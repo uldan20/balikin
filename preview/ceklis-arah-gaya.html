@@ -1,0 +1,387 @@
+<title>Tiga Arah Ceklis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gabarito:wght@500;700;900&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --paper: #FBF8F3;
+    --surface: #FFFFFF;
+    --line: #ECE5DA;
+    --line-soft: #F1ECE3;
+    --ink: #211C16;
+    --body: #6B6258;
+    --meta: #8A8175;
+    --muted: #A99F90;
+    --teal: #1B7A6E;
+    --teal-bright: #34A28F;
+    --teal-deep: #15655B;
+    --teal-soft: #E4F0ED;
+    --gold: #C8952E;
+    --shadow: 0 1px 0 rgba(33,28,22,.04), 0 14px 30px -22px rgba(33,28,22,.4);
+  }
+  :root:not([data-theme="light"]) { color-scheme: light; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --paper: #16120F; --surface: #201B15; --line: #322A22; --line-soft: #2A231C;
+      --ink: #F6F1E8; --body: #C4B9A9; --meta: #9A8F80; --muted: #7C7263;
+      --teal: #34A28F; --teal-bright: #4CBBA6; --teal-soft: #1E2E2A;
+      --shadow: 0 1px 0 rgba(0,0,0,.3), 0 16px 32px -24px rgba(0,0,0,.9);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --paper: #16120F; --surface: #201B15; --line: #322A22; --line-soft: #2A231C;
+    --ink: #F6F1E8; --body: #C4B9A9; --meta: #9A8F80; --muted: #7C7263;
+    --teal: #34A28F; --teal-bright: #4CBBA6; --teal-soft: #1E2E2A;
+    --shadow: 0 1px 0 rgba(0,0,0,.3), 0 16px 32px -24px rgba(0,0,0,.9);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--body);
+    font-family: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+    font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 40px 24px 72px; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace; font-size: 11.5px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--teal); margin: 0 0 10px;
+  }
+  h1 {
+    font-family: Gabarito, sans-serif; font-weight: 900; font-size: clamp(32px, 5.4vw, 48px);
+    line-height: 1.04; letter-spacing: -.02em; color: var(--ink); margin: 0; text-wrap: balance;
+  }
+  .lede { max-width: 64ch; margin: 14px 0 0; }
+
+  .row {
+    display: grid; grid-template-columns: 260px 1fr; gap: 28px; align-items: start;
+    padding: 26px 0; border-top: 1px solid var(--line);
+  }
+  .row:first-of-type { margin-top: 30px; }
+  @media (max-width: 760px) { .row { grid-template-columns: 1fr; gap: 18px; } }
+
+  .idcol { display: grid; gap: 12px; }
+  .badge-line { display: flex; align-items: center; gap: 12px; }
+  .letter {
+    font-family: Gabarito, sans-serif; font-weight: 900; font-size: 13px; color: var(--surface);
+    background: var(--ink); width: 24px; height: 24px; border-radius: 8px;
+    display: grid; place-items: center; flex: none;
+  }
+  .vname { font-family: Gabarito, sans-serif; font-weight: 700; font-size: 24px; color: var(--ink); line-height: 1.1; }
+  .vcode { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--muted); }
+  .idea { font-size: 14px; margin: 0; }
+  .why { font-size: 13.5px; color: var(--meta); margin: 0; padding-left: 12px; border-left: 2px solid var(--teal-bright); }
+
+  .specimens { display: flex; flex-wrap: wrap; gap: 14px; }
+  .stage {
+    border-radius: 18px; display: grid; place-items: center; padding: 18px;
+    border: 1px solid var(--line);
+  }
+  .stage.cream { background: #FBF8F3; color: #1B7A6E; }
+  .stage.tealed { background: #1B7A6E; color: #FFFFFF; border-color: transparent; }
+  .ramp {
+    display: flex; align-items: center; gap: 20px; padding: 16px 20px; border-radius: 18px;
+    background: var(--surface); border: 1px solid var(--line); color: var(--teal);
+  }
+  .ramp figure { margin: 0; display: grid; justify-items: center; gap: 8px; }
+  .ramp figcaption { font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--muted); }
+
+  .contexts { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 16px; align-items: stretch; }
+  .ctx {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 20px;
+    padding: 14px; box-shadow: var(--shadow); display: grid; gap: 10px; justify-items: center;
+  }
+  .ctx-label {
+    font-family: "IBM Plex Mono", monospace; font-size: 9.5px; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .hexbadge { width: 92px; height: 92px; display: grid; place-items: center; position: relative; color: #fff; }
+  .hexbadge svg.hex { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .hexbadge .mark { position: relative; }
+  .tile {
+    width: 148px; height: 92px; border-radius: 18px; background: #1B7A6E; color: #fff;
+    padding: 10px 12px; display: flex; flex-direction: column; justify-content: space-between;
+    position: relative; overflow: hidden;
+  }
+  .tile .corner { position: absolute; top: 9px; right: 10px; }
+  .tile .tname { font-family: Gabarito, sans-serif; font-weight: 700; font-size: 14px; }
+  .tile .hexmini { opacity: .5; }
+  .notif {
+    width: 216px; display: flex; gap: 10px; align-items: flex-start;
+    background: var(--surface); border-radius: 14px;
+  }
+  .notif .dot {
+    width: 30px; height: 30px; border-radius: 11px; background: var(--teal-soft); color: var(--teal);
+    display: grid; place-items: center; flex: none;
+  }
+  .notif .txt { font-size: 12.5px; color: var(--body); line-height: 1.4; }
+  .notif .txt b { color: var(--ink); font-weight: 600; display: block; font-size: 13px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 5px; background: var(--teal-soft); color: var(--teal);
+    border-radius: 999px; padding: 4px 10px 4px 8px; font-size: 11.5px; font-weight: 600;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; background: #1B7A6E; color: #fff;
+    border-radius: 999px; padding: 9px 16px 9px 13px; font-size: 13px; font-weight: 600;
+  }
+
+  h2 { font-family: Gabarito, sans-serif; font-weight: 700; font-size: 20px; color: var(--ink); margin: 44px 0 6px; }
+  .rec {
+    background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--gold);
+    border-radius: 14px; padding: 16px 18px; font-size: 14px; max-width: 70ch;
+  }
+  .rec b { color: var(--ink); }
+  footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--muted); }
+  code { font-family: "IBM Plex Mono", monospace; font-size: 12.5px; color: var(--ink); }
+  :focus-visible { outline: 2px solid var(--teal-bright); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<div id="root"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.26.4/babel.min.js"></script>
+<script type="text/babel" data-presets="react">
+
+/**
+ * BALIKIN — Ceklis kustom (minimalis, bukan 3D).
+ * Tiga arah gaya untuk dipilih. Semua memakai `currentColor` untuk goresan utama
+ * supaya bisa dipakai putih di atas teal maupun teal di atas krem.
+ * viewBox 0 0 100 100 · aksen emas #C8952E dari token resmi.
+ */
+
+
+const Frame = ({ size = 96, title = "Ceklis", children, ...rest }) => (
+  <svg
+    viewBox="0 0 100 100"
+    width={size}
+    height={size}
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    role="img"
+    aria-label={title}
+    {...rest}
+  >
+    {children}
+  </svg>
+);
+
+/* ─────────────────────────────────────────────── A · Jejak (satu goresan) */
+const CheckJejak = ({ accent = "#C8952E", ...props }) => (
+  <Frame title="Ceklis — Jejak" {...props}>
+    {/* jejak yang ditelusuri sebelum ketemu */}
+    <path
+      d="M9 40.5c4.4 2.2 8.2 5 11.5 8.4"
+      stroke="currentColor"
+      strokeOpacity="0.28"
+      strokeWidth="7"
+      strokeLinecap="round"
+      strokeDasharray="0.5 13"
+    />
+    {/* goresan utama: melengkung halus, bukan dua garis lurus */}
+    <path
+      d="M23 51.5c6.6 4.4 12.4 10.6 17.5 18.5 8.6-19.5 20.4-35.5 35.5-48"
+      stroke="currentColor"
+      strokeWidth="8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    {/* percik emas di ujung: momen "ketemu" */}
+    <circle cx="79.5" cy="19.5" r="4.5" fill={accent} />
+  </Frame>
+);
+
+/* ────────────────────────────────────── B · Sudut Enam (kisi heksagon 60°) */
+const CheckHexcut = ({
+  accent = "#C8952E",
+  frame = true,
+  ...props
+}) => (
+  <Frame title="Ceklis — Sudut Enam" {...props}>
+    {/* heksagon terbuka di sisi kanan-atas, ditembus ujung ceklis.
+        Matikan lewat frame={false} untuk ukuran <20px. */}
+    {frame && (
+      <path
+        d="M50 9 17 28v38l33 19 33-19V44"
+        stroke="currentColor"
+        strokeOpacity="0.3"
+        strokeWidth="6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    )}
+    {/* ceklis pada sumbu 60°, sudut mitre tajam */}
+    <path
+      d="M31 43.5 47 71 87 21"
+      stroke="currentColor"
+      strokeWidth="8.5"
+      strokeLinejoin="miter"
+      strokeMiterlimit="8"
+    />
+    {/* simpul kisi */}
+    <circle cx="87" cy="21" r="4" fill={accent} />
+  </Frame>
+);
+
+/* ────────────────────────────────── C · Tulis Tangan (goresan lebar variabel) */
+const CheckTulis = ({ accent = "#C8952E", ...props }) => (
+  <Frame title="Ceklis — Tulis Tangan" {...props}>
+    {/* sapuan aksen di belakang, seperti stabilo cepat */}
+    <path
+      d="M31 82c12.5-3.4 25.6-4.6 39.4-3.6"
+      stroke={accent}
+      strokeOpacity="0.85"
+      strokeWidth="5.5"
+      strokeLinecap="round"
+    />
+    {/* goresan spidol: path terisi, tipis di pangkal, tebal di siku, runcing di ujung */}
+    <path
+      d="M17.6 50.4c1.4-2.4 4.2-2.6 7-.6 6.6 4.8 12.6 11.4 18 19.6 8.2-17.6 19.6-33.4 34.2-47.4 2.2-2.1 4.6-2.2 6-.4 1.3 1.7.9 3.8-1.1 6.1C68 41.4 57.6 57.4 50 74.6c-1.6 3.6-3.4 5.6-5.6 5.9-2.3.3-4.2-1.2-5.8-4.2-4.6-8.6-10.2-16-16.8-22.2-2.2-2-3.2-2.7-4.2-3.7Z"
+      fill="currentColor"
+    />
+  </Frame>
+);
+
+const checkVariants = [
+  {
+    id: "CheckJejak",
+    name: "Jejak",
+    idea: "Satu goresan menerus dengan lead-in samar dan percik emas di ujung.",
+    why: "Metafora menelusuri barang sampai ketemu — sesuai inti Balikin.",
+    Icon: CheckJejak,
+  },
+  {
+    id: "CheckHexcut",
+    name: "Sudut Enam",
+    idea: "Garis di sumbu 60° kisi heksagon, bingkai heksagon terbuka ditembus ujung ceklis.",
+    why: "Ikon terasa dipotong dari kisi yang sama dengan tile dan badge di app.",
+    Icon: CheckHexcut,
+  },
+  {
+    id: "CheckTulis",
+    name: "Tulis Tangan",
+    idea: "Goresan spidol lebar-variabel dengan sapuan aksen di belakang.",
+    why: "Nada hangat dan manusiawi untuk momen apresiasi dan onboarding.",
+    Icon: CheckTulis,
+  },
+];
+
+const Hex = ({ fill = "#1B7A6E", className = "hex" }) => (
+  <svg viewBox="0 0 100 100" className={className} aria-hidden="true">
+    <path d="M42.2 7.5Q50 3 57.8 7.5L82.7 22Q90.5 26.5 90.5 35.5v29Q90.5 73.5 82.7 78L57.8 92.5Q50 97 42.2 92.5L17.3 78Q9.5 73.5 9.5 64.5v-29Q9.5 26.5 17.3 22Z" fill={fill} />
+  </svg>
+);
+
+const VARIANT_LETTER = { CheckJejak: "A", CheckHexcut: "B", CheckTulis: "C" };
+
+function Row({ id, name, idea, why, Icon }) {
+  return (
+    <section className="row">
+      <div className="idcol">
+        <div className="badge-line">
+          <span className="letter">{VARIANT_LETTER[id]}</span>
+          <div>
+            <div className="vname">{name}</div>
+            <div className="vcode">{id}</div>
+          </div>
+        </div>
+        <p className="idea">{idea}</p>
+        <p className="why">{why}</p>
+      </div>
+
+      <div>
+        <div className="specimens">
+          <div className="stage cream"><Icon size={104} /></div>
+          <div className="stage tealed"><Icon size={104} /></div>
+          <div className="ramp">
+            {[32, 24, 20, 16].map((s) => (
+              <figure key={s}>
+                <Icon size={s} frame={s >= 24} />
+                <figcaption>{s}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+
+        <div className="contexts">
+          <div className="ctx">
+            <span className="ctx-label">Badge sukses</span>
+            <div className="hexbadge">
+              <Hex fill="#FBF8F3" />
+              <span className="mark" style={{ color: "#1B7A6E" }}><Icon size={44} /></span>
+            </div>
+          </div>
+
+          <div className="ctx">
+            <span className="ctx-label">Tile kategori terpilih</span>
+            <div className="tile">
+              <span className="corner"><Icon size={20} frame={false} /></span>
+              <span className="hexmini" style={{ width: 28, height: 28, display: "block" }}>
+                <Hex fill="rgba(255,255,255,.22)" />
+              </span>
+              <span className="tname">Tas &amp; Dompet</span>
+            </div>
+          </div>
+
+          <div className="ctx">
+            <span className="ctx-label">Baris notifikasi</span>
+            <div className="notif">
+              <span className="dot"><Icon size={17} frame={false} /></span>
+              <span className="txt">
+                <b>Kecocokan 100% untuk tas ranselmu</b>
+                Penemu membuat laporan yang diadukan ke BLK-2E08.
+              </span>
+            </div>
+          </div>
+
+          <div className="ctx">
+            <span className="ctx-label">Pill &amp; tombol</span>
+            <div style={{ display: "grid", gap: 10, justifyItems: "center" }}>
+              <span className="pill"><Icon size={13} frame={false} /> Terverifikasi</span>
+              <span className="btn"><Icon size={16} frame={false} /> Tandai selesai</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function App() {
+  return (
+    <div className="wrap">
+      <header>
+        <p className="eyebrow">Balikin · Arah gaya ikon · Ceklis</p>
+        <h1>Tiga arah ceklis untuk Balikin</h1>
+        <p className="lede">
+          Semua minimalis satu warna (bukan 3D) dan memakai <code>currentColor</code>, jadi bisa
+          putih di atas kartu teal maupun teal di atas krem. Yang membedakan bukan tebal garis,
+          tapi dari mana bentuknya diturunkan: gerak menelusuri, kisi heksagon app, atau tangan
+          yang menulis. Bandingkan di ukuran kecil dan di konteks asli sebelum memilih.
+        </p>
+      </header>
+
+      {checkVariants.map((v) => <Row key={v.id} {...v} />)}
+
+      <h2>Rekomendasi</h2>
+      <p className="rec">
+        <b>B · Sudut Enam</b> untuk sistem ikon utama — geometrinya bisa diturunkan konsisten ke 30+
+        ikon lain (kategori, navigasi, status) karena punya aturan sudut yang tegas, dan langsung
+        senada dengan heksagon yang sudah ada di tile, avatar, dan FAB. Simpan <b>C · Tulis Tangan</b>
+        khusus untuk momen emosional — layar "Akun kamu siap!", ucapan terima kasih, badge apresiasi —
+        supaya kehangatannya terasa spesial, bukan seragam. <b>A · Jejak</b> adalah jalan tengah jika
+        nanti terasa B terlalu kaku.
+      </p>
+
+      <footer>
+        Balikin — komponen: <code>src/icons/CheckMarks.tsx</code> · ekspor terpisah{" "}
+        <code>CheckJejak</code>, <code>CheckHexcut</code>, <code>CheckTulis</code>
+      </footer>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+
+</script>

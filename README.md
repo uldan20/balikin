@@ -45,3 +45,19 @@ sehingga aman dirender berkali-kali dalam satu halaman.
 `preview/kategori2-item-icons.html` — lembar spesimen (React + Babel via CDN):
 grid 8 ikon, ramp ukuran 40/24/16 px, penguji latar (canvas / struktur / emas /
 malam), dan daftar token warna. Buka langsung di browser.
+
+## Ceklis kustom (minimalis)
+
+`src/icons/CheckMarks.tsx` — tiga arah gaya untuk dipilih, semua satu warna
+lewat `currentColor` dan tanpa efek 3D:
+
+| Komponen | Arah | Ide |
+| --- | --- | --- |
+| `CheckJejak` | A · Jejak | Satu goresan menerus, lead-in samar, percik emas di ujung |
+| `CheckHexcut` | B · Sudut Enam | Garis di sumbu 60° kisi heksagon, bingkai heksagon terbuka |
+| `CheckTulis` | C · Tulis Tangan | Goresan spidol lebar-variabel dengan sapuan aksen |
+
+`CheckHexcut` menerima `frame={false}` untuk mematikan bingkai heksagon di
+ukuran di bawah 20 px. Semua menerima `accent` (default `#C8952E`).
+
+Pratinjau perbandingan: `preview/ceklis-arah-gaya.html`.
