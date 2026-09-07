@@ -175,6 +175,21 @@
   .cat .tick { position: absolute; top: 7px; right: 8px; }
 
 
+  .achgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-top: 14px; }
+  .ach {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 20px;
+    padding: 16px 12px 14px; display: grid; justify-items: center; gap: 4px; box-shadow: var(--shadow);
+  }
+  .ach.off { background: var(--line-soft); box-shadow: none; }
+  .achhex { width: 56px; height: 56px; position: relative; display: block; margin-bottom: 6px; }
+  .achmark {
+    position: absolute; inset: 0; display: grid; place-items: center; color: #fff;
+  }
+  .ach.off .achmark { color: #A99F90; }
+  .achname { font-size: 13.5px; font-weight: 700; color: var(--ink); font-family: Gabarito, sans-serif; }
+  .ach.off .achname { color: var(--muted); }
+  .achmeta { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--muted); }
+
   h2 .count {
     font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--muted);
     border: 1px solid var(--line); border-radius: 999px; padding: 2px 8px; margin-left: 8px;
@@ -266,23 +281,26 @@ const STROKE = {
   detail: 5.5
 };
 
+/** Pembulatan dua desimal supaya path tetap enak dibaca dan file SVG ringkas. */
+const n = v => Math.round(v * 100) / 100;
+
 /** Heksagon bersudut kiri–kanan (flat top). */
 const hexFlat = (cx, cy, r) => {
-  const s = r * 0.8660254;
-  const h = r / 2;
+  const s = n(r * 0.8660254);
+  const h = n(r / 2);
   return `M${cx + r} ${cy}L${cx + h} ${cy + s}L${cx - h} ${cy + s}L${cx - r} ${cy}L${cx - h} ${cy - s}L${cx + h} ${cy - s}Z`;
 };
 
 /** Heksagon bersudut atas–bawah (pointy top) — bentuk wadah di app. */
 const hexPointy = (cx, cy, r) => {
-  const s = r * 0.8660254;
-  const h = r / 2;
+  const s = n(r * 0.8660254);
+  const h = n(r / 2);
   return `M${cx} ${cy - r}L${cx + s} ${cy - h}L${cx + s} ${cy + h}L${cx} ${cy + r}L${cx - s} ${cy + h}L${cx - s} ${cy - h}Z`;
 };
 
 /** Bidang persegi dengan empat sudut dipangkas 60°. */
 const cut = (x, y, w, h, c = 7) => {
-  const v = c * 1.732;
+  const v = n(c * 1.732);
   return `M${x + c} ${y}H${x + w - c}L${x + w} ${y + v}V${y + h - v}L${x + w - c} ${y + h}H${x + c}L${x} ${y + h - v}V${y + v}Z`;
 };
 
@@ -290,7 +308,7 @@ const cut = (x, y, w, h, c = 7) => {
  *  Sengaja BUKAN bintang enam: dua segitiga yang saling tumpuk membentuk
  *  Star of David, simbol religius yang tidak diinginkan di konteks ini. */
 const star4 = (cx, cy, r, k = 0.3) => {
-  const i = r * k;
+  const i = n(r * k);
   return `M${cx} ${cy - r}L${cx + i} ${cy - i}L${cx + r} ${cy}L${cx + i} ${cy + i}L${cx} ${cy + r}L${cx - i} ${cy + i}L${cx - r} ${cy}L${cx - i} ${cy - i}Z`;
 };
 const Hexcut = ({
@@ -1318,6 +1336,18 @@ const ActionBookmark = ({
   d: hexFlat(50, 42, 7),
   fill: accent
 }));
+const ActionMail = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Email"
+}, p), /*#__PURE__*/React.createElement(S, {
+  d: cut(9, 24, 82, 52, 9)
+}), /*#__PURE__*/React.createElement("path", {
+  d: "M14 32 50 58 86 32",
+  stroke: accent,
+  strokeWidth: 6.5
+}));
 const ActionBack = ({
   accent = tokens.gold,
   ...p
@@ -1459,6 +1489,171 @@ const ActionCopyLink = ({
   d: hexFlat(38, 62, 9),
   fill: accent
 }));
+/* Achievements */
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * Lencana pencapaian — dipakai DI DALAM wadah heksagon (teal saat terbuka,
+ * abu saat terkunci), jadi bentuknya sengaja tidak memakai bingkai heksagon
+ * lagi dan garisnya lebih tebal (8–9) supaya tetap terbaca pada ±26 px.
+ * Aksen emas hanya untuk lencana yang terbuka; saat terkunci pakai
+ * accent="currentColor" agar seluruh bentuk meredup bersama.
+ */
+
+const AchFirstReturn = ({
+  accent = tokens.goldLight,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Balik Pertama"
+}, p), /*#__PURE__*/React.createElement(S, {
+  d: "M24 52 43 74 82 26",
+  w: 9
+}), /*#__PURE__*/React.createElement(A, {
+  d: hexFlat(20, 44, 8),
+  fill: accent
+}));
+const AchTenItems = ({
+  accent = tokens.goldLight,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "10 Barang"
+}, p), /*#__PURE__*/React.createElement(A, {
+  d: cut(30, 8, 40, 36, 5),
+  fill: accent
+}), /*#__PURE__*/React.createElement(S, {
+  d: cut(8, 52, 40, 36, 5),
+  w: 7.5
+}), /*#__PURE__*/React.createElement(S, {
+  d: cut(52, 52, 40, 36, 5),
+  w: 7.5
+}));
+const AchFastReply = ({
+  accent = tokens.goldLight,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Balas Cepat"
+}, p), /*#__PURE__*/React.createElement(S, {
+  d: "M10 20h80v44H48L26 86V64H10V20Z",
+  w: 8
+}), /*#__PURE__*/React.createElement(A, {
+  d: "M58 26 38 52h11l-4 20 19-28H52l6-18Z",
+  fill: accent
+}));
+const AchEagleEye = ({
+  accent = tokens.goldLight,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Mata Elang"
+}, p), /*#__PURE__*/React.createElement(S, {
+  d: "M8 50 50 22 92 50 50 78 8 50Z",
+  w: 8
+}), /*#__PURE__*/React.createElement(A, {
+  d: hexFlat(50, 50, 13),
+  fill: accent
+}));
+const AchDocs = ({
+  accent = tokens.goldLight,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Dokumen"
+}, p), /*#__PURE__*/React.createElement(S, {
+  d: "M22 10h36l20 20v60H22V10Z",
+  w: 8
+}), /*#__PURE__*/React.createElement(S, {
+  d: "M58 10v20h20",
+  w: 7
+}), /*#__PURE__*/React.createElement(A, {
+  d: "M34 50h32v8H34zM34 66h22v8H34z",
+  fill: accent
+}));
+const AchNightWatch = ({
+  accent = tokens.goldLight,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Jaga Malam"
+}, p), /*#__PURE__*/React.createElement("path", {
+  d: "M64 12A40 40 0 1 0 64 88A46 46 0 1 1 64 12Z",
+  fill: "currentColor"
+}), /*#__PURE__*/React.createElement(A, {
+  d: star4(80, 76, 12),
+  fill: accent
+}));
+const AchZeroDispute = ({
+  accent = tokens.goldLight,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Nol Sengketa"
+}, p), /*#__PURE__*/React.createElement(S, {
+  d: "M50 8 90 20v28L50 92 10 48V20L50 8Z",
+  w: 8
+}), /*#__PURE__*/React.createElement("path", {
+  d: hexPointy(50, 45, 14),
+  stroke: accent,
+  strokeWidth: 7
+}));
+const AchMover = ({
+  accent = tokens.goldLight,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Penggerak"
+}, p), /*#__PURE__*/React.createElement(A, {
+  d: hexFlat(50, 28, 18),
+  fill: accent
+}), /*#__PURE__*/React.createElement(S, {
+  d: hexFlat(26, 68, 18),
+  w: 7.5
+}), /*#__PURE__*/React.createElement(S, {
+  d: hexFlat(74, 68, 18),
+  w: 7.5
+}));
+const AchLegend = ({
+  accent = tokens.goldLight,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Legenda"
+}, p), /*#__PURE__*/React.createElement(S, {
+  d: star4(46, 52, 40),
+  w: 8
+}), /*#__PURE__*/React.createElement(A, {
+  d: star4(84, 16, 13),
+  fill: accent
+}));
+const achievementBadges = [{
+  id: "AchFirstReturn",
+  label: "Balik Pertama",
+  Icon: AchFirstReturn
+}, {
+  id: "AchTenItems",
+  label: "10 Barang",
+  Icon: AchTenItems
+}, {
+  id: "AchFastReply",
+  label: "Balas Cepat",
+  Icon: AchFastReply
+}, {
+  id: "AchEagleEye",
+  label: "Mata Elang",
+  Icon: AchEagleEye
+}, {
+  id: "AchDocs",
+  label: "Dokumen",
+  Icon: AchDocs
+}, {
+  id: "AchNightWatch",
+  label: "Jaga Malam",
+  Icon: AchNightWatch
+}, {
+  id: "AchZeroDispute",
+  label: "Nol Sengketa",
+  Icon: AchZeroDispute
+}, {
+  id: "AchMover",
+  label: "Penggerak",
+  Icon: AchMover
+}, {
+  id: "AchLegend",
+  label: "Legenda",
+  Icon: AchLegend
+}];
 /* index */
 const all = {
   SysSignal,
@@ -1528,6 +1723,7 @@ const all = {
   ActionShare,
   ActionCamera,
   ActionBookmark,
+  ActionMail,
   ActionBack,
   ActionTip,
   ActionReputation,
@@ -1536,7 +1732,17 @@ const all = {
   PayBank,
   PayEwallet,
   PayCard,
-  ActionCopyLink
+  ActionCopyLink,
+  AchFirstReturn,
+  AchTenItems,
+  AchFastReply,
+  AchEagleEye,
+  AchDocs,
+  AchNightWatch,
+  AchZeroDispute,
+  AchMover,
+  AchLegend,
+  achievementBadges
 };
 const g = (group, rows) => ({
   group,
@@ -1548,7 +1754,7 @@ const g = (group, rows) => ({
 });
 
 /** Pustaka lengkap, dikelompokkan mengikuti rekap ikon aplikasi Balikin. */
-const balikinIcons = [g("Navigasi & Sistem UI", [["SysSignal", "Sinyal"], ["SysWifi", "Wi-Fi"], ["SysWifiOff", "Wi-Fi terputus"], ["SysBattery", "Baterai"], ["ArrowUp", "Ke atas"], ["ArrowForward", "Lanjut"], ["ActionBack", "Kembali"], ["ArrowDownload", "Unduh"], ["ChevronDown", "Buka"], ["ActionClose", "Tutup"], ["ActionRefresh", "Muat ulang"], ["ActionShare", "Bagikan"], ["MapLayers", "Layer peta"], ["NavArrow", "Penunjuk arah"], ["ActionNotification", "Notifikasi"], ["ActionBookmark", "Simpan"]]), g("Bottom Bar & Akses Cepat", [["NavHome", "Beranda"], ["NavExplore", "Jelajah"], ["NavGrid", "Semua menu"], ["NavAddPost", "Lapor"], ["ActionChat", "Chat"], ["NavProfile", "Profil"], ["NavReports", "Laporan saya"], ["NavHistory", "Riwayat"]]), g("Form, Media & Peta", [["NavSearch", "Cari"], ["ActionPlus", "Tambah"], ["FormCheckbox", "Kotak centang"], ["FormRadio", "Pilihan tunggal"], ["FormToggle", "Sakelar"], ["FormEye", "Tampilkan"], ["FormEyeOff", "Sembunyikan"], ["ActionShutter", "Ambil foto"], ["ActionFlash", "Flash"], ["ActionScan", "Pindai"], ["FormPin", "Titik lokasi"], ["FormCalendar", "Kalender"], ["ActionCamera", "Kamera"], ["ActionLocation", "Peta"], ["ActionFilter", "Filter"]]), g("Badge, Gamifikasi & Status", [["StatusLost", "Hilang"], ["StatusFound", "Ditemukan"], ["StatusReturned", "Sudah kembali"], ["StatusRejected", "Ditolak"], ["StatusAlert", "Perhatian"], ["VerifiedBadge", "Terverifikasi"], ["VerifiedMini", "Terverifikasi padat"], ["BadgeShield", "Terlindungi"], ["BadgeLock", "Terkunci"], ["BadgeStar", "Rating"], ["BadgeCrown", "Mahkota"], ["BadgeEye", "Mata elang"], ["BadgeScales", "Adil"], ["RewardBadge", "Apresiasi"], ["RewardCoin", "Poin"], ["ActionReputation", "Reputasi"], ["ActionSparkle", "Sorotan AI"], ["ActionTip", "Tip"], ["ActionSettings", "Pengaturan"]]), g("Keuangan, Tip & Bagikan", [["PayQr", "QRIS"], ["PayBank", "Bank"], ["PayEwallet", "E-wallet"], ["PayCard", "Kartu ATM"], ["ActionCopyLink", "Salin tautan"]]), g("Kategori Barang", [["ItemBagWallet", "Tas & Dompet"], ["ItemBag", "Tas"], ["ItemWallet", "Dompet"], ["ItemKeys", "Kunci"], ["ItemElectronics", "HP & Elektronik"], ["ItemDocuments", "Dokumen"], ["ItemIdCard", "Kartu identitas"], ["ItemGlasses", "Kacamata"], ["ItemUmbrella", "Payung"], ["ItemTumbler", "Tumbler"], ["ItemPets", "Hewan"], ["ItemJewelry", "Perhiasan"], ["ItemOthers", "Lainnya"]])];
+const balikinIcons = [g("Navigasi & Sistem UI", [["SysSignal", "Sinyal"], ["SysWifi", "Wi-Fi"], ["SysWifiOff", "Wi-Fi terputus"], ["SysBattery", "Baterai"], ["ArrowUp", "Ke atas"], ["ArrowForward", "Lanjut"], ["ActionBack", "Kembali"], ["ArrowDownload", "Unduh"], ["ChevronDown", "Buka"], ["ActionClose", "Tutup"], ["ActionRefresh", "Muat ulang"], ["ActionShare", "Bagikan"], ["MapLayers", "Layer peta"], ["NavArrow", "Penunjuk arah"], ["ActionNotification", "Notifikasi"], ["ActionBookmark", "Simpan"], ["ActionMail", "Email"]]), g("Bottom Bar & Akses Cepat", [["NavHome", "Beranda"], ["NavExplore", "Jelajah"], ["NavGrid", "Semua menu"], ["NavAddPost", "Lapor"], ["ActionChat", "Chat"], ["NavProfile", "Profil"], ["NavReports", "Laporan saya"], ["NavHistory", "Riwayat"]]), g("Form, Media & Peta", [["NavSearch", "Cari"], ["ActionPlus", "Tambah"], ["FormCheckbox", "Kotak centang"], ["FormRadio", "Pilihan tunggal"], ["FormToggle", "Sakelar"], ["FormEye", "Tampilkan"], ["FormEyeOff", "Sembunyikan"], ["ActionShutter", "Ambil foto"], ["ActionFlash", "Flash"], ["ActionScan", "Pindai"], ["FormPin", "Titik lokasi"], ["FormCalendar", "Kalender"], ["ActionCamera", "Kamera"], ["ActionLocation", "Peta"], ["ActionFilter", "Filter"]]), g("Badge, Gamifikasi & Status", [["StatusLost", "Hilang"], ["StatusFound", "Ditemukan"], ["StatusReturned", "Sudah kembali"], ["StatusRejected", "Ditolak"], ["StatusAlert", "Perhatian"], ["VerifiedBadge", "Terverifikasi"], ["VerifiedMini", "Terverifikasi padat"], ["BadgeShield", "Terlindungi"], ["BadgeLock", "Terkunci"], ["BadgeStar", "Rating"], ["BadgeCrown", "Mahkota"], ["BadgeEye", "Mata elang"], ["BadgeScales", "Adil"], ["RewardBadge", "Apresiasi"], ["RewardCoin", "Poin"], ["ActionReputation", "Reputasi"], ["ActionSparkle", "Sorotan AI"], ["ActionTip", "Tip"], ["ActionSettings", "Pengaturan"]]), g("Keuangan, Tip & Bagikan", [["PayQr", "QRIS"], ["PayBank", "Bank"], ["PayEwallet", "E-wallet"], ["PayCard", "Kartu ATM"], ["ActionCopyLink", "Salin tautan"]]), g("Lencana Pencapaian", [["AchFirstReturn", "Balik Pertama"], ["AchTenItems", "10 Barang"], ["AchFastReply", "Balas Cepat"], ["AchEagleEye", "Mata Elang"], ["AchDocs", "Dokumen"], ["AchNightWatch", "Jaga Malam"], ["AchZeroDispute", "Nol Sengketa"], ["AchMover", "Penggerak"], ["AchLegend", "Legenda"]]), g("Kategori Barang", [["ItemBagWallet", "Tas & Dompet"], ["ItemBag", "Tas"], ["ItemWallet", "Dompet"], ["ItemKeys", "Kunci"], ["ItemElectronics", "HP & Elektronik"], ["ItemDocuments", "Dokumen"], ["ItemIdCard", "Kartu identitas"], ["ItemGlasses", "Kacamata"], ["ItemUmbrella", "Payung"], ["ItemTumbler", "Tumbler"], ["ItemPets", "Hewan"], ["ItemJewelry", "Perhiasan"], ["ItemOthers", "Lainnya"]])];
 const SPECS = [["Sumbu", "0° · 30° · 60° · 90°"], ["Sudut", "dipangkas 60°, sambungan mitre"], ["Tebal", "7 · 6.5 · 5.5"], ["Aksen", "emas #C8952E, satu per ikon"]];
 const Hex = ({
   fill
@@ -1610,7 +1816,35 @@ function App() {
   }) => /*#__PURE__*/React.createElement(Icon, {
     key: id,
     size: 20
-  })))))), /*#__PURE__*/React.createElement("h2", null, "Di dalam app"), /*#__PURE__*/React.createElement("p", {
+  })))))), /*#__PURE__*/React.createElement("h2", null, "Lencana di layar pencapaian"), /*#__PURE__*/React.createElement("p", {
+    className: "section-note"
+  }, "Lencana selalu tampil di dalam wadah heksagon: teal saat terbuka, abu saat terkunci. Garisnya dibuat lebih tebal daripada ikon UI supaya tetap terbaca pada \xB126 px."), /*#__PURE__*/React.createElement("div", {
+    className: "achgrid"
+  }, achievementBadges.map(({
+    id,
+    label,
+    Icon
+  }, i) => {
+    const open = i < 5;
+    const meta = ["12 Mar 2026", "02 Jun 2026", "18 Jan 2026", "04 Apr 2026", "21 Mei 2026", "40%", "74%", "40%", "36%"][i];
+    return /*#__PURE__*/React.createElement("div", {
+      className: open ? "ach" : "ach off",
+      key: id
+    }, /*#__PURE__*/React.createElement("span", {
+      className: "achhex"
+    }, /*#__PURE__*/React.createElement(Hex, {
+      fill: open ? "#1B7A6E" : "#E4DED2"
+    }), /*#__PURE__*/React.createElement("span", {
+      className: "achmark"
+    }, /*#__PURE__*/React.createElement(Icon, {
+      size: 26,
+      accent: open ? "#F3D77C" : "currentColor"
+    }))), /*#__PURE__*/React.createElement("span", {
+      className: "achname"
+    }, label), /*#__PURE__*/React.createElement("span", {
+      className: "achmeta"
+    }, meta));
+  })), /*#__PURE__*/React.createElement("h2", null, "Di dalam app"), /*#__PURE__*/React.createElement("p", {
     className: "section-note"
   }, "Wadah heksagon, tab bar, dan baris laporan memakai ikon yang sama."), /*#__PURE__*/React.createElement("div", {
     className: "boards"

@@ -19,17 +19,18 @@ kisi heksagon yang sama dengan tile kategori, avatar, dan tombol tambah di app.
 `src/icons/hexcut/base.tsx` memuat aturan ini beserta pembantu geometri
 (`hexFlat`, `hexPointy`, `cut`, `star4`) supaya ikon baru tetap satu kisi.
 
-## Isi pustaka (76 ikon)
+## Isi pustaka (86 ikon)
 
 Dikelompokkan mengikuti rekap ikon aplikasi Balikin.
 
 | Kelompok | File | Komponen |
 | --- | --- | --- |
-| Navigasi & Sistem UI (16) | `System.tsx`, `Actions.tsx` | `SysSignal` `SysWifi` `SysWifiOff` `SysBattery` `ArrowUp` `ArrowForward` `ActionBack` `ArrowDownload` `ChevronDown` `ActionClose` `ActionRefresh` `ActionShare` `MapLayers` `NavArrow` `ActionNotification` `ActionBookmark` |
+| Navigasi & Sistem UI (17) | `System.tsx`, `Actions.tsx` | `SysSignal` `SysWifi` `SysWifiOff` `SysBattery` `ArrowUp` `ArrowForward` `ActionBack` `ArrowDownload` `ChevronDown` `ActionClose` `ActionRefresh` `ActionShare` `MapLayers` `NavArrow` `ActionNotification` `ActionBookmark` `ActionMail` |
 | Bottom Bar & Akses Cepat (8) | `Nav.tsx` | `NavHome` `NavExplore` `NavGrid` `NavAddPost` `ActionChat` `NavProfile` `NavReports` `NavHistory` |
 | Form, Media & Peta (15) | `Form.tsx` | `NavSearch` `ActionPlus` `FormCheckbox` `FormRadio` `FormToggle` `FormEye` `FormEyeOff` `ActionShutter` `ActionFlash` `ActionScan` `FormPin` `FormCalendar` `ActionCamera` `ActionLocation` `ActionFilter` |
 | Badge, Gamifikasi & Status (19) | `Status.tsx`, `Badges.tsx` | `StatusLost` `StatusFound` `StatusReturned` `StatusRejected` `StatusAlert` `VerifiedBadge` `VerifiedMini` `BadgeShield` `BadgeLock` `BadgeStar` `BadgeCrown` `BadgeEye` `BadgeScales` `RewardBadge` `RewardCoin` `ActionReputation` `ActionSparkle` `ActionTip` `ActionSettings` |
 | Keuangan, Tip & Bagikan (5) | `Pay.tsx` | `PayQr` `PayBank` `PayEwallet` `PayCard` `ActionCopyLink` |
+| Lencana Pencapaian (9) | `Achievements.tsx` | `AchFirstReturn` `AchTenItems` `AchFastReply` `AchEagleEye` `AchDocs` `AchNightWatch` `AchZeroDispute` `AchMover` `AchLegend` |
 | Kategori Barang (13) | `Items.tsx` | `ItemBagWallet` `ItemBag` `ItemWallet` `ItemKeys` `ItemElectronics` `ItemDocuments` `ItemIdCard` `ItemGlasses` `ItemUmbrella` `ItemTumbler` `ItemPets` `ItemJewelry` `ItemOthers` |
 
 ### Yang sengaja tidak digambar
@@ -40,10 +41,25 @@ masing-masing supaya sah dan langsung dikenali pengguna. `PayBank`,
 `PayEwallet`, dan `ActionShare` dipakai untuk metode/tindakannya; logo resmi
 dipakai untuk kanalnya.
 
-### Pengecualian bentuk
+### Lencana pencapaian
 
-`BadgeStar` (rating) memakai bintang **lima** sudut, satu-satunya bentuk yang
-keluar dari kisi heksagon: bintang empat terbaca "kilau", bukan "nilai".
+Lencana selalu tampil **di dalam wadah heksagon** — teal saat terbuka, abu saat
+terkunci — jadi bentuknya tidak memakai bingkai heksagon lagi dan garisnya lebih
+tebal (7.5–9) supaya tetap terbaca pada ±26 px. Saat terkunci, panggil dengan
+`accent="currentColor"` supaya seluruh bentuk meredup bersama:
+
+```tsx
+<AchFirstReturn size={26} accent={terbuka ? "#F3D77C" : "currentColor"} />
+```
+
+### Dua pengecualian bentuk
+
+Hanya dua bentuk yang keluar dari kisi heksagon, keduanya demi keterbacaan:
+
+1. `BadgeStar` (rating) memakai bintang **lima** sudut — bintang empat terbaca
+   "kilau", bukan "nilai".
+2. `AchNightWatch` (Jaga Malam) memakai **lengkung** — sabit bersudut terbaca
+   sebagai heksagon bolong, bukan bulan.
 
 ## Pemakaian
 

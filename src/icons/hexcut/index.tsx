@@ -7,6 +7,7 @@ export * from "./Status";
 export * from "./Badges";
 export * from "./Actions";
 export * from "./Pay";
+export * from "./Achievements";
 
 import * as Sys from "./System";
 import * as Nav from "./Nav";
@@ -16,8 +17,9 @@ import * as Status from "./Status";
 import * as Badges from "./Badges";
 import * as Actions from "./Actions";
 import * as Pay from "./Pay";
+import * as Ach from "./Achievements";
 
-const all: Record<string, any> = { ...Sys, ...Nav, ...Form, ...Items, ...Status, ...Badges, ...Actions, ...Pay };
+const all: Record<string, any> = { ...Sys, ...Nav, ...Form, ...Items, ...Status, ...Badges, ...Actions, ...Pay, ...Ach };
 
 const g = (group: string, rows: [string, string][]) => ({
   group,
@@ -33,6 +35,7 @@ export const balikinIcons = [
     ["ActionClose", "Tutup"], ["ActionRefresh", "Muat ulang"], ["ActionShare", "Bagikan"],
     ["MapLayers", "Layer peta"], ["NavArrow", "Penunjuk arah"],
     ["ActionNotification", "Notifikasi"], ["ActionBookmark", "Simpan"],
+    ["ActionMail", "Email"],
   ]),
   g("Bottom Bar & Akses Cepat", [
     ["NavHome", "Beranda"], ["NavExplore", "Jelajah"], ["NavGrid", "Semua menu"],
@@ -58,6 +61,13 @@ export const balikinIcons = [
   g("Keuangan, Tip & Bagikan", [
     ["PayQr", "QRIS"], ["PayBank", "Bank"], ["PayEwallet", "E-wallet"],
     ["PayCard", "Kartu ATM"], ["ActionCopyLink", "Salin tautan"],
+  ]),
+  g("Lencana Pencapaian", [
+    ["AchFirstReturn", "Balik Pertama"], ["AchTenItems", "10 Barang"],
+    ["AchFastReply", "Balas Cepat"], ["AchEagleEye", "Mata Elang"],
+    ["AchDocs", "Dokumen"], ["AchNightWatch", "Jaga Malam"],
+    ["AchZeroDispute", "Nol Sengketa"], ["AchMover", "Penggerak"],
+    ["AchLegend", "Legenda"],
   ]),
   g("Kategori Barang", [
     ["ItemBagWallet", "Tas & Dompet"], ["ItemBag", "Tas"], ["ItemWallet", "Dompet"],

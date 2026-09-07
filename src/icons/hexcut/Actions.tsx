@@ -62,6 +62,13 @@ export const ActionBookmark = ({ accent = tokens.gold, ...p }: IconProps) => (
   </Hexcut>
 );
 
+export const ActionMail = ({ accent = tokens.gold, ...p }: IconProps) => (
+  <Hexcut title="Email" {...p}>
+    <S d={cut(9, 24, 82, 52, 9)} />
+    <path d="M14 32 50 58 86 32" stroke={accent} strokeWidth={6.5} />
+  </Hexcut>
+);
+
 export const ActionBack = ({ accent = tokens.gold, ...p }: IconProps) => (
   <Hexcut title="Kembali" {...p}>
     <S d="M84 50H26" />
