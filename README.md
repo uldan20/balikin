@@ -70,3 +70,12 @@ dengan komposisi identik (badan tas + pegangan + kartu dompet terselip di sudut)
 
 Pratinjau perbandingan: `preview/tas-dompet-arah-gaya.html` — termasuk tile
 terpilih/belum dipilih, baris laporan, chip filter, dan ramp 40/28/24/20/16 px.
+
+## Kunci & HP (uji tiga arah gaya)
+
+`src/icons/KeysDevice.tsx` — `KeysJejak`/`KeysHexcut`/`KeysTulis` dan
+`DeviceJejak`/`DeviceHexcut`/`DeviceTulis`. Kunci menguji bentuk melingkar
+dengan gigi kecil, HP menguji bidang besar; keduanya memakai isyarat yang sama
+di tiap gaya (lubang kunci emas, kilat emas di dalam layar).
+
+Matriks perbandingan empat ikon x tiga gaya: `preview/empat-ikon-tiga-gaya.html`.
