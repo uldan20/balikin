@@ -12,20 +12,38 @@ kisi heksagon yang sama dengan tile kategori, avatar, dan tombol tambah di app.
 - Tebal garis: 7 (struktur utama), 6.5 (elemen kedua), 5.5 (detail).
 - Struktur memakai `currentColor`; garis pendukung `opacity 0.3`.
 - Aksen emas `#C8952E` maksimal satu elemen per ikon.
-- Bintang memakai **empat sudut**, bukan enam: dua segitiga bertumpuk membentuk
-  Star of David, simbol religius yang tidak diinginkan di konteks ini.
+- Bintang kilau/apresiasi memakai **empat sudut**, tidak pernah enam: dua
+  segitiga bertumpuk membentuk Star of David, simbol religius yang tidak
+  diinginkan di konteks ini.
 
 `src/icons/hexcut/base.tsx` memuat aturan ini beserta pembantu geometri
 (`hexFlat`, `hexPointy`, `cut`, `star4`) supaya ikon baru tetap satu kisi.
 
-## Isi pustaka (33 ikon)
+## Isi pustaka (76 ikon)
 
-| Kelompok | Komponen |
-| --- | --- |
-| Navigasi (6) | `NavHome` `NavSearch` `NavAddPost` `NavHistory` `NavProfile` `NavExplore` |
-| Kategori Barang (10) | `ItemBagWallet` `ItemBag` `ItemWallet` `ItemKeys` `ItemElectronics` `ItemDocuments` `ItemIdCard` `ItemPets` `ItemJewelry` `ItemOthers` |
-| Status & Indikator (6) | `StatusLost` `StatusFound` `StatusReturned` `RewardBadge` `VerifiedBadge` `VerifiedMini` |
-| Tindakan & Utilitas (11) | `ActionFilter` `ActionNotification` `ActionChat` `ActionLocation` `ActionShare` `ActionCamera` `ActionBookmark` `ActionBack` `ActionTip` `ActionReputation` `ActionSparkle` |
+Dikelompokkan mengikuti rekap ikon aplikasi Balikin.
+
+| Kelompok | File | Komponen |
+| --- | --- | --- |
+| Navigasi & Sistem UI (16) | `System.tsx`, `Actions.tsx` | `SysSignal` `SysWifi` `SysWifiOff` `SysBattery` `ArrowUp` `ArrowForward` `ActionBack` `ArrowDownload` `ChevronDown` `ActionClose` `ActionRefresh` `ActionShare` `MapLayers` `NavArrow` `ActionNotification` `ActionBookmark` |
+| Bottom Bar & Akses Cepat (8) | `Nav.tsx` | `NavHome` `NavExplore` `NavGrid` `NavAddPost` `ActionChat` `NavProfile` `NavReports` `NavHistory` |
+| Form, Media & Peta (15) | `Form.tsx` | `NavSearch` `ActionPlus` `FormCheckbox` `FormRadio` `FormToggle` `FormEye` `FormEyeOff` `ActionShutter` `ActionFlash` `ActionScan` `FormPin` `FormCalendar` `ActionCamera` `ActionLocation` `ActionFilter` |
+| Badge, Gamifikasi & Status (19) | `Status.tsx`, `Badges.tsx` | `StatusLost` `StatusFound` `StatusReturned` `StatusRejected` `StatusAlert` `VerifiedBadge` `VerifiedMini` `BadgeShield` `BadgeLock` `BadgeStar` `BadgeCrown` `BadgeEye` `BadgeScales` `RewardBadge` `RewardCoin` `ActionReputation` `ActionSparkle` `ActionTip` `ActionSettings` |
+| Keuangan, Tip & Bagikan (5) | `Pay.tsx` | `PayQr` `PayBank` `PayEwallet` `PayCard` `ActionCopyLink` |
+| Kategori Barang (13) | `Items.tsx` | `ItemBagWallet` `ItemBag` `ItemWallet` `ItemKeys` `ItemElectronics` `ItemDocuments` `ItemIdCard` `ItemGlasses` `ItemUmbrella` `ItemTumbler` `ItemPets` `ItemJewelry` `ItemOthers` |
+
+### Yang sengaja tidak digambar
+
+Logo layanan pihak ketiga — WhatsApp, Instagram, Telegram, logo bank —
+**tidak** digambar ulang dalam gaya ini. Merek dagang harus memakai aset resmi
+masing-masing supaya sah dan langsung dikenali pengguna. `PayBank`,
+`PayEwallet`, dan `ActionShare` dipakai untuk metode/tindakannya; logo resmi
+dipakai untuk kanalnya.
+
+### Pengecualian bentuk
+
+`BadgeStar` (rating) memakai bintang **lima** sudut, satu-satunya bentuk yang
+keluar dari kisi heksagon: bintang empat terbaca "kilau", bukan "nilai".
 
 ## Pemakaian
 

@@ -1,65 +1,69 @@
 export * from "./base";
+export * from "./System";
 export * from "./Nav";
+export * from "./Form";
 export * from "./Items";
 export * from "./Status";
+export * from "./Badges";
 export * from "./Actions";
+export * from "./Pay";
 
-import {
-  NavHome, NavSearch, NavAddPost, NavHistory, NavProfile, NavExplore,
-} from "./Nav";
-import {
-  ItemBagWallet, ItemBag, ItemWallet, ItemKeys, ItemElectronics,
-  ItemDocuments, ItemIdCard, ItemPets, ItemJewelry, ItemOthers,
-} from "./Items";
-import {
-  StatusLost, StatusFound, StatusReturned, RewardBadge, VerifiedBadge, VerifiedMini,
-} from "./Status";
-import {
-  ActionFilter, ActionNotification, ActionChat, ActionLocation, ActionShare,
-  ActionCamera, ActionBookmark, ActionBack, ActionTip, ActionReputation, ActionSparkle,
-} from "./Actions";
+import * as Sys from "./System";
+import * as Nav from "./Nav";
+import * as Form from "./Form";
+import * as Items from "./Items";
+import * as Status from "./Status";
+import * as Badges from "./Badges";
+import * as Actions from "./Actions";
+import * as Pay from "./Pay";
 
-/** Daftar lengkap pustaka, dipakai halaman pratinjau dan dokumentasi. */
+const all: Record<string, any> = { ...Sys, ...Nav, ...Form, ...Items, ...Status, ...Badges, ...Actions, ...Pay };
+
+const g = (group: string, rows: [string, string][]) => ({
+  group,
+  items: rows.map(([id, label]) => ({ id, label, Icon: all[id] })),
+});
+
+/** Pustaka lengkap, dikelompokkan mengikuti rekap ikon aplikasi Balikin. */
 export const balikinIcons = [
-  { group: "Navigasi Utama", items: [
-    { id: "NavHome", label: "Beranda", Icon: NavHome },
-    { id: "NavSearch", label: "Cari", Icon: NavSearch },
-    { id: "NavAddPost", label: "Buat laporan", Icon: NavAddPost },
-    { id: "NavHistory", label: "Riwayat", Icon: NavHistory },
-    { id: "NavProfile", label: "Profil", Icon: NavProfile },
-    { id: "NavExplore", label: "Jelajah", Icon: NavExplore },
-  ]},
-  { group: "Kategori Barang", items: [
-    { id: "ItemBagWallet", label: "Tas & Dompet", Icon: ItemBagWallet },
-    { id: "ItemBag", label: "Tas", Icon: ItemBag },
-    { id: "ItemWallet", label: "Dompet", Icon: ItemWallet },
-    { id: "ItemKeys", label: "Kunci", Icon: ItemKeys },
-    { id: "ItemElectronics", label: "HP & Elektronik", Icon: ItemElectronics },
-    { id: "ItemDocuments", label: "Dokumen", Icon: ItemDocuments },
-    { id: "ItemIdCard", label: "Kartu identitas", Icon: ItemIdCard },
-    { id: "ItemPets", label: "Hewan", Icon: ItemPets },
-    { id: "ItemJewelry", label: "Perhiasan", Icon: ItemJewelry },
-    { id: "ItemOthers", label: "Lainnya", Icon: ItemOthers },
-  ]},
-  { group: "Status & Indikator", items: [
-    { id: "StatusLost", label: "Hilang", Icon: StatusLost },
-    { id: "StatusFound", label: "Ditemukan", Icon: StatusFound },
-    { id: "StatusReturned", label: "Sudah kembali", Icon: StatusReturned },
-    { id: "RewardBadge", label: "Apresiasi", Icon: RewardBadge },
-    { id: "VerifiedBadge", label: "Terverifikasi", Icon: VerifiedBadge },
-    { id: "VerifiedMini", label: "Terverifikasi (padat)", Icon: VerifiedMini },
-  ]},
-  { group: "Tindakan & Utilitas", items: [
-    { id: "ActionFilter", label: "Filter", Icon: ActionFilter },
-    { id: "ActionNotification", label: "Notifikasi", Icon: ActionNotification },
-    { id: "ActionChat", label: "Percakapan", Icon: ActionChat },
-    { id: "ActionLocation", label: "Lokasi", Icon: ActionLocation },
-    { id: "ActionShare", label: "Bagikan", Icon: ActionShare },
-    { id: "ActionCamera", label: "Kamera", Icon: ActionCamera },
-    { id: "ActionBookmark", label: "Simpan", Icon: ActionBookmark },
-    { id: "ActionBack", label: "Kembali", Icon: ActionBack },
-    { id: "ActionTip", label: "Tip", Icon: ActionTip },
-    { id: "ActionReputation", label: "Reputasi", Icon: ActionReputation },
-    { id: "ActionSparkle", label: "Sorotan", Icon: ActionSparkle },
-  ]},
-] as const;
+  g("Navigasi & Sistem UI", [
+    ["SysSignal", "Sinyal"], ["SysWifi", "Wi-Fi"], ["SysWifiOff", "Wi-Fi terputus"],
+    ["SysBattery", "Baterai"], ["ArrowUp", "Ke atas"], ["ArrowForward", "Lanjut"],
+    ["ActionBack", "Kembali"], ["ArrowDownload", "Unduh"], ["ChevronDown", "Buka"],
+    ["ActionClose", "Tutup"], ["ActionRefresh", "Muat ulang"], ["ActionShare", "Bagikan"],
+    ["MapLayers", "Layer peta"], ["NavArrow", "Penunjuk arah"],
+    ["ActionNotification", "Notifikasi"], ["ActionBookmark", "Simpan"],
+  ]),
+  g("Bottom Bar & Akses Cepat", [
+    ["NavHome", "Beranda"], ["NavExplore", "Jelajah"], ["NavGrid", "Semua menu"],
+    ["NavAddPost", "Lapor"], ["ActionChat", "Chat"], ["NavProfile", "Profil"],
+    ["NavReports", "Laporan saya"], ["NavHistory", "Riwayat"],
+  ]),
+  g("Form, Media & Peta", [
+    ["NavSearch", "Cari"], ["ActionPlus", "Tambah"], ["FormCheckbox", "Kotak centang"],
+    ["FormRadio", "Pilihan tunggal"], ["FormToggle", "Sakelar"], ["FormEye", "Tampilkan"],
+    ["FormEyeOff", "Sembunyikan"], ["ActionShutter", "Ambil foto"], ["ActionFlash", "Flash"],
+    ["ActionScan", "Pindai"], ["FormPin", "Titik lokasi"], ["FormCalendar", "Kalender"],
+    ["ActionCamera", "Kamera"], ["ActionLocation", "Peta"], ["ActionFilter", "Filter"],
+  ]),
+  g("Badge, Gamifikasi & Status", [
+    ["StatusLost", "Hilang"], ["StatusFound", "Ditemukan"], ["StatusReturned", "Sudah kembali"],
+    ["StatusRejected", "Ditolak"], ["StatusAlert", "Perhatian"], ["VerifiedBadge", "Terverifikasi"],
+    ["VerifiedMini", "Terverifikasi padat"], ["BadgeShield", "Terlindungi"], ["BadgeLock", "Terkunci"],
+    ["BadgeStar", "Rating"], ["BadgeCrown", "Mahkota"], ["BadgeEye", "Mata elang"],
+    ["BadgeScales", "Adil"], ["RewardBadge", "Apresiasi"], ["RewardCoin", "Poin"],
+    ["ActionReputation", "Reputasi"], ["ActionSparkle", "Sorotan AI"], ["ActionTip", "Tip"],
+    ["ActionSettings", "Pengaturan"],
+  ]),
+  g("Keuangan, Tip & Bagikan", [
+    ["PayQr", "QRIS"], ["PayBank", "Bank"], ["PayEwallet", "E-wallet"],
+    ["PayCard", "Kartu ATM"], ["ActionCopyLink", "Salin tautan"],
+  ]),
+  g("Kategori Barang", [
+    ["ItemBagWallet", "Tas & Dompet"], ["ItemBag", "Tas"], ["ItemWallet", "Dompet"],
+    ["ItemKeys", "Kunci"], ["ItemElectronics", "HP & Elektronik"], ["ItemDocuments", "Dokumen"],
+    ["ItemIdCard", "Kartu identitas"], ["ItemGlasses", "Kacamata"], ["ItemUmbrella", "Payung"],
+    ["ItemTumbler", "Tumbler"], ["ItemPets", "Hewan"], ["ItemJewelry", "Perhiasan"],
+    ["ItemOthers", "Lainnya"],
+  ]),
+];

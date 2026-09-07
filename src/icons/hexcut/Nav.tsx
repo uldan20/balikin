@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Hexcut, S, A, hexFlat, hexPointy, IconProps, tokens } from "./base";
+import { Hexcut, S, A, hexFlat, hexPointy, cut, IconProps, tokens } from "./base";
 
 /* Kategori 1 — Navigasi Utama */
 
@@ -49,5 +49,23 @@ export const NavExplore = ({ accent = tokens.gold, ...p }: IconProps) => (
     <S d={hexFlat(50, 50, 28)} />
     <A d="M50 50 66 34 56 56 50 50Z" fill={accent} />
     <S d="M50 50 34 66 44 44 50 50Z" w={5.5} />
+  </Hexcut>
+);
+
+export const NavGrid = ({ accent = tokens.gold, ...p }: IconProps) => (
+  <Hexcut title="Semua menu" {...p}>
+    <S d={cut(12, 12, 33, 33, 6)} w={6.5} />
+    <S d={cut(55, 12, 33, 33, 6)} w={6.5} />
+    <S d={cut(12, 55, 33, 33, 6)} w={6.5} />
+    <A d={cut(55, 55, 33, 33, 6)} fill={accent} />
+  </Hexcut>
+);
+
+export const NavReports = ({ accent = tokens.gold, ...p }: IconProps) => (
+  <Hexcut title="Laporan saya" {...p}>
+    <S d="M38 12h24v16H38z" w={6.5} />
+    <S d={cut(16, 20, 68, 70, 9)} />
+    <S d="M32 52h36M32 68h24" w={5.5} o={0.32} />
+    <A d={hexFlat(74, 74, 8)} fill={accent} />
   </Hexcut>
 );

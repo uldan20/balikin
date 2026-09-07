@@ -94,3 +94,28 @@ export const ItemOthers = ({ accent = tokens.gold, ...p }: IconProps) => (
     <A d={hexFlat(61, 22, 7)} fill={accent} />
   </Hexcut>
 );
+
+export const ItemGlasses = ({ accent = tokens.gold, ...p }: IconProps) => (
+  <Hexcut title="Kacamata" {...p}>
+    <S d="M12 40 22 30M88 40 78 30" w={6} />
+    <S d={hexFlat(28, 56, 18)} />
+    <S d={hexFlat(72, 56, 18)} />
+    <A d="M44 52h12v8H44z" fill={accent} />
+  </Hexcut>
+);
+
+export const ItemUmbrella = ({ accent = tokens.gold, ...p }: IconProps) => (
+  <Hexcut title="Payung" {...p}>
+    <S d="M8 54 50 16 92 54 79 46 65 54 50 46 35 54 21 46 8 54Z" />
+    <S d="M50 50v28l-12 8" w={6.5} />
+    <A d={hexFlat(50, 18, 7)} fill={accent} />
+  </Hexcut>
+);
+
+export const ItemTumbler = ({ accent = tokens.gold, ...p }: IconProps) => (
+  <Hexcut title="Tumbler" {...p}>
+    <S d="M30 22h40" w={6.5} />
+    <S d="M32 22h36v50l-6 16H38l-6-16V22Z" />
+    <A d="M34 44h32v10H34z" fill={accent} />
+  </Hexcut>
+);
