@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tas">
+<defs>
+<linearGradient id="rga" x1="16" y1="22" x2="84" y2="90" gradientUnits="userSpaceOnUse">
+<stop stop-color="#34A28F">
+</stop>
+<stop offset="0.5" stop-color="#1B7A6E">
+</stop>
+<stop offset="1" stop-color="#12564D">
+</stop>
+</linearGradient>
+<linearGradient id="rgb" x1="30" y1="56" x2="70" y2="86" gradientUnits="userSpaceOnUse">
+<stop stop-color="#15655B">
+</stop>
+<stop offset="1" stop-color="#0C3B34">
+</stop>
+</linearGradient>
+<linearGradient id="rgc" x1="44" y1="62" x2="56" y2="74" gradientUnits="userSpaceOnUse">
+<stop stop-color="#F3D77C">
+</stop>
+<stop offset="1" stop-color="#C8952E">
+</stop>
+</linearGradient>
+<filter id="rgs" x="-30%" y="-30%" width="160%" height="160%">
+<feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#211C16" flood-opacity="0.12">
+</feDropShadow>
+</filter>
+</defs>
+<ellipse cx="50" cy="91" rx="28" ry="5.5" fill="#211C16" opacity="0.09">
+</ellipse>
+<g filter="url(#rgs)">
+<path d="M38 32V23a12 12 0 0 1 24 0v9" stroke="#12564D" stroke-width="6.5" stroke-linecap="round">
+</path>
+<path d="M28 46c0-9 4-16 9-19M72 46c0-9-4-16-9-19" stroke="#12564D" stroke-width="7" stroke-linecap="round">
+</path>
+<path d="M15 47c0-11 9-20 20-20h30c11 0 20 9 20 20v24c0 9.4-7.6 17-17 17H32c-9.4 0-17-7.6-17-17V47Z" fill="url(#rga)">
+</path>
+<path d="M15 44h70v9H15z" fill="#0C3B34" opacity="0.22">
+</path>
+<rect x="27" y="56" width="46" height="32" rx="14" fill="#0C3B34" opacity="0.28">
+</rect>
+<rect x="28" y="55" width="44" height="33" rx="13" fill="url(#rgb)">
+</rect>
+<rect x="34" y="64" width="32" height="6" rx="3" fill="url(#rgc)">
+</rect>
+<circle cx="50" cy="67" r="5.2" fill="#F3D77C">
+</circle>
+<rect x="47.6" y="70" width="4.8" height="10" rx="2.4" fill="#C8952E">
+</rect>
+<path d="M35 78h30" stroke="#0C3B34" stroke-opacity="0.25" stroke-width="3" stroke-linecap="round">
+</path>
+<path d="M22 60c0-11.6 5.6-21 13-24" stroke="#F1ECE3" stroke-opacity="0.42" stroke-width="3.2" stroke-linecap="round">
+</path>
+</g>
+</svg>
