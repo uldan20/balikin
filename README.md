@@ -61,3 +61,12 @@ lewat `currentColor` dan tanpa efek 3D:
 ukuran di bawah 20 px. Semua menerima `accent` (default `#C8952E`).
 
 Pratinjau perbandingan: `preview/ceklis-arah-gaya.html`.
+
+## Tas & Dompet (uji tiga arah gaya)
+
+`src/icons/BagWallet.tsx` — kategori "Tas & Dompet" digambar ulang di ketiga arah
+dengan komposisi identik (badan tas + pegangan + kartu dompet terselip di sudut):
+`BagWalletJejak`, `BagWalletHexcut`, `BagWalletTulis`.
+
+Pratinjau perbandingan: `preview/tas-dompet-arah-gaya.html` — termasuk tile
+terpilih/belum dipilih, baris laporan, chip filter, dan ramp 40/28/24/20/16 px.
