@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="none" stroke-linejoin="miter" stroke-miterlimit="8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kalender">
+<path d="M32 26V12M68 26V12" stroke="currentColor" stroke-width="6.5"/>
+<path d="M20 24H80L89 39.59V70.41L80 86H20L11 70.41V39.59Z" stroke="currentColor" stroke-width="7"/>
+<path d="M14 44h72" stroke="currentColor" stroke-width="6"/>
+<path d="M42 63L38.5 69.06L31.5 69.06L28 63L31.5 56.94L38.5 56.94Z" fill="#C8952E"/>
+<path d="M65 63L61.5 69.06L54.5 69.06L51 63L54.5 56.94L61.5 56.94Z" stroke="currentColor" stroke-width="5" stroke-opacity="0.4"/>
+</svg>

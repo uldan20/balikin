@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="none" stroke-linejoin="miter" stroke-miterlimit="8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hewan">
+<path d="M35 34L30.5 41.79L21.5 41.79L17 34L21.5 26.21L30.5 26.21Z" stroke="currentColor" stroke-width="6"/>
+<path d="M53 24L48.5 31.79L39.5 31.79L35 24L39.5 16.21L48.5 16.21Z" fill="#C8952E"/>
+<path d="M72 26L67.5 33.79L58.5 33.79L54 26L58.5 18.21L67.5 18.21Z" stroke="currentColor" stroke-width="6"/>
+<path d="M89 40L84.5 47.79L75.5 47.79L71 40L75.5 32.21L84.5 32.21Z" stroke="currentColor" stroke-width="6"/>
+<path d="M39 54h30l10 17-10 17H39L29 71l10-17Z" stroke="currentColor" stroke-width="7"/>
+</svg>

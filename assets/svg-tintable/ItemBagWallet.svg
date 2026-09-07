@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="none" stroke-linejoin="miter" stroke-miterlimit="8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tas &amp; Dompet">
+<path d="M65 50 71 36h14l-4 14" stroke="currentColor" stroke-width="6"/>
+<path d="M73 42.2h7.5v4.6H73z" fill="#C8952E"/>
+<path d="M37 50V38l7-12h12l7 12v12" stroke="currentColor" stroke-width="6.5"/>
+<path d="M16 50h68v20l-8 14H24l-8-14V50Z" stroke="currentColor" stroke-width="7"/>
+<path d="M57 65L53.5 71.06L46.5 71.06L43 65L46.5 58.94L53.5 58.94Z" fill="#C8952E"/>
+<path d="M30 78h40" stroke="currentColor" stroke-width="5.5" stroke-opacity="0.3"/>
+</svg>

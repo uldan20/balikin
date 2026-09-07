@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="none" stroke-linejoin="miter" stroke-miterlimit="8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Wi-Fi">
+<path d="M10 42 50 19 90 42" stroke="currentColor" stroke-width="7"/>
+<path d="M26 58 50 44 74 58" stroke="currentColor" stroke-width="6.5"/>
+<path d="M59 74L54.5 81.79L45.5 81.79L41 74L45.5 66.21L54.5 66.21Z" fill="#C8952E"/>
+</svg>

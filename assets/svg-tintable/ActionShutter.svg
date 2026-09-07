@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="none" stroke-linejoin="miter" stroke-miterlimit="8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ambil foto">
+<path d="M50 14L81.18 32L81.18 68L50 86L18.82 68L18.82 32Z" stroke="currentColor" stroke-width="7"/>
+<path d="M50 28L69.05 39L69.05 61L50 72L30.95 61L30.95 39Z" stroke="currentColor" stroke-width="6.5"/>
+<path d="M58 50L54 56.93L46 56.93L42 50L46 43.07L54 43.07Z" fill="#C8952E"/>
+</svg>

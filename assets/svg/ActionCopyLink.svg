@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="none" stroke-linejoin="miter" stroke-miterlimit="8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Salin tautan">
+<path d="M42 10H82L90 23.86V52.14L82 66H42L34 52.14V23.86Z" stroke="#1B7A6E" stroke-width="6.5" stroke-opacity="0.35"/>
+<path d="M18 34H58L66 47.86V76.14L58 90H18L10 76.14V47.86Z" stroke="#1B7A6E" stroke-width="7"/>
+<path d="M47 62L42.5 69.79L33.5 69.79L29 62L33.5 54.21L42.5 54.21Z" fill="#C8952E"/>
+</svg>

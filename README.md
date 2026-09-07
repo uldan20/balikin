@@ -59,6 +59,26 @@ Setiap ikon menerima seluruh props `<svg>`. `size` mengatur lebar dan tinggi
 sekaligus. `StatusLost` dan `StatusFound` menerima `tone` untuk warna semantiknya.
 `balikinIcons` mengekspor daftar lengkap beserta label Indonesia.
 
+## File SVG
+
+`assets/svg/` — 76 file `.svg` mandiri berwarna teal `#1B7A6E`, siap di-drag ke
+Figma atau dipakai sebagai aset gambar.
+`assets/svg-tintable/` — versi yang mempertahankan `currentColor`, untuk
+di-inline ke HTML dan diwarnai lewat CSS.
+
+Keduanya hasil generate, bukan file yang diedit tangan. Regenerate kapan saja:
+
+```bash
+npm install
+npm run export:svg              # teal #1B7A6E ke assets/svg
+npm run export:svg:white        # putih, untuk latar teal
+npm run export:svg:tintable     # currentColor
+node scripts/export-svg.mjs --color=#BC5A3C --out=assets/svg-merah
+```
+
+Script merender komponen lewat `react-dom/server`, jadi tidak butuh browser dan
+hasilnya selalu identik dengan komponen React-nya.
+
 ## Pratinjau
 
 - `preview/pustaka-sudut-enam.html` — lembar pustaka lengkap, uji 20 px, dan

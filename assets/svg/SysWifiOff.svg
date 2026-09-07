@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="none" stroke-linejoin="miter" stroke-miterlimit="8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Wi-Fi terputus">
+<path d="M10 42 50 19 90 42" stroke="#1B7A6E" stroke-width="7" stroke-opacity="0.32"/>
+<path d="M26 58 50 44 74 58" stroke="#1B7A6E" stroke-width="6.5" stroke-opacity="0.32"/>
+<path d="M59 74L54.5 81.79L45.5 81.79L41 74L45.5 66.21L54.5 66.21Z" stroke="#1B7A6E" stroke-width="5.5" stroke-opacity="0.32"/>
+<path d="M18 18 82 82" stroke="#BC5A3C" stroke-width="7.5"/>
+</svg>

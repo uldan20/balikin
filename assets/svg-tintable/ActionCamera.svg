@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="none" stroke-linejoin="miter" stroke-miterlimit="8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kamera">
+<path d="M35 32 41 20h18l6 12" stroke="currentColor" stroke-width="6.5"/>
+<path d="M19 32H81L89 45.86V66.14L81 80H19L11 66.14V45.86Z" stroke="currentColor" stroke-width="7"/>
+<path d="M65 56L57.5 68.99L42.5 68.99L35 56L42.5 43.01L57.5 43.01Z" stroke="currentColor" stroke-width="6.5"/>
+<path d="M79 43L76.5 47.33L71.5 47.33L69 43L71.5 38.67L76.5 38.67Z" fill="#C8952E"/>
+</svg>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="none" stroke-linejoin="miter" stroke-miterlimit="8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sinyal">
+<path d="M18 70v12M38 58v24M58 44v38" stroke="currentColor" stroke-width="7"/>
+<path d="M78 26v56" stroke="#C8952E" stroke-width="7"/>
+</svg>

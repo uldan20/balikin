@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="none" stroke-linejoin="miter" stroke-miterlimit="8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="QRIS">
+<path d="M17 11H37L43 21.39V32.61L37 43H17L11 32.61V21.39Z" stroke="currentColor" stroke-width="6.5"/>
+<path d="M63 11H83L89 21.39V32.61L83 43H63L57 32.61V21.39Z" stroke="currentColor" stroke-width="6.5"/>
+<path d="M17 57H37L43 67.39V78.61L37 89H17L11 78.61V67.39Z" stroke="currentColor" stroke-width="6.5"/>
+<path d="M71 63L67 69.93L59 69.93L55 63L59 56.07L67 56.07Z" fill="#C8952E"/>
+<path d="M89 63L86 68.2L80 68.2L77 63L80 57.8L86 57.8Z" fill="#C8952E"/>
+<path d="M69 83L66 88.2L60 88.2L57 83L60 77.8L66 77.8Z" fill="#C8952E"/>
+<path d="M91 83L87 89.93L79 89.93L75 83L79 76.07L87 76.07Z" stroke="currentColor" stroke-width="5.5"/>
+</svg>

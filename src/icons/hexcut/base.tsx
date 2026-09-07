@@ -31,23 +31,26 @@ export const tokens = {
 
 export const STROKE = { main: 7, second: 6.5, detail: 5.5 } as const;
 
+/** Pembulatan dua desimal supaya path tetap enak dibaca dan file SVG ringkas. */
+const n = (v: number) => Math.round(v * 100) / 100;
+
 /** Heksagon bersudut kiri–kanan (flat top). */
 export const hexFlat = (cx: number, cy: number, r: number) => {
-  const s = r * 0.8660254;
-  const h = r / 2;
+  const s = n(r * 0.8660254);
+  const h = n(r / 2);
   return `M${cx + r} ${cy}L${cx + h} ${cy + s}L${cx - h} ${cy + s}L${cx - r} ${cy}L${cx - h} ${cy - s}L${cx + h} ${cy - s}Z`;
 };
 
 /** Heksagon bersudut atas–bawah (pointy top) — bentuk wadah di app. */
 export const hexPointy = (cx: number, cy: number, r: number) => {
-  const s = r * 0.8660254;
-  const h = r / 2;
+  const s = n(r * 0.8660254);
+  const h = n(r / 2);
   return `M${cx} ${cy - r}L${cx + s} ${cy - h}L${cx + s} ${cy + h}L${cx} ${cy + r}L${cx - s} ${cy + h}L${cx - s} ${cy - h}Z`;
 };
 
 /** Bidang persegi dengan empat sudut dipangkas 60°. */
 export const cut = (x: number, y: number, w: number, h: number, c = 7) => {
-  const v = c * 1.732;
+  const v = n(c * 1.732);
   return `M${x + c} ${y}H${x + w - c}L${x + w} ${y + v}V${y + h - v}L${x + w - c} ${y + h}H${x + c}L${x} ${y + h - v}V${y + v}Z`;
 };
 
@@ -55,7 +58,7 @@ export const cut = (x: number, y: number, w: number, h: number, c = 7) => {
  *  Sengaja BUKAN bintang enam: dua segitiga yang saling tumpuk membentuk
  *  Star of David, simbol religius yang tidak diinginkan di konteks ini. */
 export const star4 = (cx: number, cy: number, r: number, k = 0.3) => {
-  const i = r * k;
+  const i = n(r * k);
   return `M${cx} ${cy - r}L${cx + i} ${cy - i}L${cx + r} ${cy}L${cx + i} ${cy + i}L${cx} ${cy + r}L${cx - i} ${cy + i}L${cx - r} ${cy}L${cx - i} ${cy - i}Z`;
 };
 

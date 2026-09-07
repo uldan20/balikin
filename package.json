@@ -1,5 +1,17 @@
 {
-  "dependencies": {
-    "playwright": "^1.49.1"
+  "name": "balikin-icons",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pustaka ikon Balikin — gaya Sudut Enam (Hexcut)",
+  "type": "module",
+  "scripts": {
+    "export:svg": "node scripts/export-svg.mjs",
+    "export:svg:white": "node scripts/export-svg.mjs --color=#FFFFFF --out=assets/svg-putih",
+    "export:svg:tintable": "node scripts/export-svg.mjs --color=currentColor --out=assets/svg-tintable"
+  },
+  "devDependencies": {
+    "@babel/standalone": "^7.26.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }
