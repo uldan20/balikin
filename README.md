@@ -1,81 +1,53 @@
 # Balikin — Icon Library
 
-Ikon aplikasi Balikin (Lost & Found) bergaya **Korean Soft 3D / Claymorphism**.
+Pustaka ikon aplikasi Balikin (Lost & Found) dengan bahasa visual
+**Sudut Enam (Hexcut)**: minimalis satu warna, seluruh garis jatuh di sumbu
+kisi heksagon yang sama dengan tile kategori, avatar, dan tombol tambah di app.
 
-## Kategori 2 — Kategori Barang (Item Types)
+## Aturan bentuk
 
-`src/icons/ItemCategoryIcons.tsx` mengekspor 8 komponen React SVG:
+- Kanvas `viewBox="0 0 100 100"`, area aman 8–92.
+- Sumbu garis: 0°, 30°, 60°, 90°. Sudut bidang **dipangkas 60°**, tidak pernah dibulatkan.
+- Sambungan garis **mitre** (tajam) — tanda tangan gaya ini.
+- Tebal garis: 7 (struktur utama), 6.5 (elemen kedua), 5.5 (detail).
+- Struktur memakai `currentColor`; garis pendukung `opacity 0.3`.
+- Aksen emas `#C8952E` maksimal satu elemen per ikon.
+- Bintang memakai **empat sudut**, bukan enam: dua segitiga bertumpuk membentuk
+  Star of David, simbol religius yang tidak diinginkan di konteks ini.
 
-| Komponen | Kategori | Catatan visual |
-| --- | --- | --- |
-| `ItemElectronics` | Elektronik | Smartphone 3D dengan lampu indikator emas |
-| `ItemWallet` | Dompet | Dompet 3D terbuka dengan kartu ID melayang |
-| `ItemKeys` | Kunci | Gantungan kunci 3D dengan ring membal |
-| `ItemDocuments` | Dokumen | Map dokumen 3D dengan jepitan kertas emas |
-| `ItemBag` | Tas | Ransel 3D melengkung dengan kantong depan |
-| `ItemPets` | Hewan | Kalung hewan 3D dengan liontin tag emas |
-| `ItemJewelry` | Perhiasan | Cincin 3D mengkilap dengan batu teal |
-| `ItemOthers` | Lainnya | Kotak hadiah 3D dengan pita emas |
+`src/icons/hexcut/base.tsx` memuat aturan ini beserta pembantu geometri
+(`hexFlat`, `hexPointy`, `cut`, `star4`) supaya ikon baru tetap satu kisi.
 
-Ekspor pendukung: `balikinTokens` (token warna resmi), `itemCategoryIcons`
-(daftar metadata) dan `ItemCategoryIconGrid` (grid pratinjau).
+## Isi pustaka (33 ikon)
 
-### Pemakaian
+| Kelompok | Komponen |
+| --- | --- |
+| Navigasi (6) | `NavHome` `NavSearch` `NavAddPost` `NavHistory` `NavProfile` `NavExplore` |
+| Kategori Barang (10) | `ItemBagWallet` `ItemBag` `ItemWallet` `ItemKeys` `ItemElectronics` `ItemDocuments` `ItemIdCard` `ItemPets` `ItemJewelry` `ItemOthers` |
+| Status & Indikator (6) | `StatusLost` `StatusFound` `StatusReturned` `RewardBadge` `VerifiedBadge` `VerifiedMini` |
+| Tindakan & Utilitas (11) | `ActionFilter` `ActionNotification` `ActionChat` `ActionLocation` `ActionShare` `ActionCamera` `ActionBookmark` `ActionBack` `ActionTip` `ActionReputation` `ActionSparkle` |
+
+## Pemakaian
 
 ```tsx
-import { ItemWallet, ItemKeys } from "@/icons/ItemCategoryIcons";
+import { ItemKeys, StatusLost } from "@/icons/hexcut";
 
-<ItemWallet size={40} />
-<ItemKeys size={24} onClick={pilihKategori} />
+<ItemKeys size={24} />                   // ikut warna teks (currentColor)
+<StatusLost size={20} />                 // pin merah, warnanya sudah semantik
+<ItemKeys size={24} accent="#F3D77C" />  // ganti aksen emas
 ```
 
 Setiap ikon menerima seluruh props `<svg>`. `size` mengatur lebar dan tinggi
-sekaligus, dan ID gradien dibuat unik per instance lewat `React.useId()`
-sehingga aman dirender berkali-kali dalam satu halaman.
-
-### Aturan yang dipatuhi
-
-- `viewBox="0 0 100 100"`, gradien tersimpan di `<defs>` dengan ID unik.
-- Drop shadow utama `dx=0 dy=6 stdDeviation=5 #211C16 @ 12%`.
-- Top edge highlight beropasitas rendah pada tiap bentuk utama.
-- Hanya token warna resmi Balikin (teal, emas, netral) yang dipakai.
+sekaligus. `StatusLost` dan `StatusFound` menerima `tone` untuk warna semantiknya.
+`balikinIcons` mengekspor daftar lengkap beserta label Indonesia.
 
 ## Pratinjau
 
-`preview/kategori2-item-icons.html` — lembar spesimen (React + Babel via CDN):
-grid 8 ikon, ramp ukuran 40/24/16 px, penguji latar (canvas / struktur / emas /
-malam), dan daftar token warna. Buka langsung di browser.
+- `preview/pustaka-sudut-enam.html` — lembar pustaka lengkap, uji 20 px, dan
+  tiruan layar app (pilih kategori, tab bar, baris laporan, status).
+- `preview/ceklis-arah-gaya.html`, `preview/tas-dompet-arah-gaya.html`,
+  `preview/empat-ikon-tiga-gaya.html` — catatan perbandingan tiga arah gaya
+  yang mengantar ke pilihan Sudut Enam.
 
-## Ceklis kustom (minimalis)
-
-`src/icons/CheckMarks.tsx` — tiga arah gaya untuk dipilih, semua satu warna
-lewat `currentColor` dan tanpa efek 3D:
-
-| Komponen | Arah | Ide |
-| --- | --- | --- |
-| `CheckJejak` | A · Jejak | Satu goresan menerus, lead-in samar, percik emas di ujung |
-| `CheckHexcut` | B · Sudut Enam | Garis di sumbu 60° kisi heksagon, bingkai heksagon terbuka |
-| `CheckTulis` | C · Tulis Tangan | Goresan spidol lebar-variabel dengan sapuan aksen |
-
-`CheckHexcut` menerima `frame={false}` untuk mematikan bingkai heksagon di
-ukuran di bawah 20 px. Semua menerima `accent` (default `#C8952E`).
-
-Pratinjau perbandingan: `preview/ceklis-arah-gaya.html`.
-
-## Tas & Dompet (uji tiga arah gaya)
-
-`src/icons/BagWallet.tsx` — kategori "Tas & Dompet" digambar ulang di ketiga arah
-dengan komposisi identik (badan tas + pegangan + kartu dompet terselip di sudut):
-`BagWalletJejak`, `BagWalletHexcut`, `BagWalletTulis`.
-
-Pratinjau perbandingan: `preview/tas-dompet-arah-gaya.html` — termasuk tile
-terpilih/belum dipilih, baris laporan, chip filter, dan ramp 40/28/24/20/16 px.
-
-## Kunci & HP (uji tiga arah gaya)
-
-`src/icons/KeysDevice.tsx` — `KeysJejak`/`KeysHexcut`/`KeysTulis` dan
-`DeviceJejak`/`DeviceHexcut`/`DeviceTulis`. Kunci menguji bentuk melingkar
-dengan gigi kecil, HP menguji bidang besar; keduanya memakai isyarat yang sama
-di tiap gaya (lubang kunci emas, kilat emas di dalam layar).
-
-Matriks perbandingan empat ikon x tiga gaya: `preview/empat-ikon-tiga-gaya.html`.
+`explorations/` menyimpan dua arah gaya yang tidak dipilih sebagai catatan
+keputusan; jangan diimpor dari kode app.
