@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="none" stroke-linejoin="miter" stroke-miterlimit="8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Penggerak">
+<path d="M68 28L59 43.59L41 43.59L32 28L41 12.41L59 12.41Z" fill="#F3D77C"/>
+<path d="M44 68L35 83.59L17 83.59L8 68L17 52.41L35 52.41Z" stroke="currentColor" stroke-width="7.5"/>
+<path d="M92 68L83 83.59L65 83.59L56 68L65 52.41L83 52.41Z" stroke="currentColor" stroke-width="7.5"/>
+</svg>

@@ -21,7 +21,7 @@ const arg = (name, fallback) => {
 const COLOR = arg("color", "#1B7A6E");
 const OUT = path.resolve(arg("out", "assets/svg"));
 const SRC = path.resolve("src/icons/hexcut");
-const FILES = ["base", "System", "Nav", "Form", "Items", "Status", "Badges", "Actions", "Pay"];
+const FILES = ["base", "System", "Nav", "Form", "Items", "Status", "Badges", "Actions", "Pay", "Achievements"];
 
 /** Gabungkan semua modul jadi satu sumber, buang import/export antar-file. */
 let bundle = "";
