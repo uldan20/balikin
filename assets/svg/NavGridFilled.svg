@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="none" stroke-linejoin="miter" stroke-miterlimit="8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Semua menu">
+<path d="M18 12H39L45 22.39V34.61L39 45H18L12 34.61V22.39Z" fill="#1B7A6E"/>
+<path d="M61 12H82L88 22.39V34.61L82 45H61L55 34.61V22.39Z" fill="#1B7A6E"/>
+<path d="M18 55H39L45 65.39V77.61L39 88H18L12 77.61V65.39Z" fill="#1B7A6E"/>
+<path d="M61 55H82L88 65.39V77.61L82 88H61L55 77.61V65.39Z" fill="#C8952E"/>
+</svg>

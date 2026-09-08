@@ -19,7 +19,7 @@ kisi heksagon yang sama dengan tile kategori, avatar, dan tombol tambah di app.
 `src/icons/hexcut/base.tsx` memuat aturan ini beserta pembantu geometri
 (`hexFlat`, `hexPointy`, `cut`, `star4`) supaya ikon baru tetap satu kisi.
 
-## Isi pustaka (86 ikon)
+## Isi pustaka (86 ikon, dua varian)
 
 Dikelompokkan mengikuti rekap ikon aplikasi Balikin.
 
@@ -40,6 +40,26 @@ Logo layanan pihak ketiga — WhatsApp, Instagram, Telegram, logo bank —
 masing-masing supaya sah dan langsung dikenali pengguna. `PayBank`,
 `PayEwallet`, dan `ActionShare` dipakai untuk metode/tindakannya; logo resmi
 dipakai untuk kanalnya.
+
+### Varian garis dan padat
+
+Setiap ikon punya pasangan padat dengan akhiran `Filled` (`Solid.tsx`) — total
+172 komponen. Padat untuk keadaan aktif atau terpilih, garis untuk keadaan
+biasa:
+
+```tsx
+import { NavHome, NavHomeFilled } from "@/icons/hexcut";
+
+<NavHome size={24} />        // tab tidak aktif
+<NavHomeFilled size={24} />  // tab aktif
+```
+
+Aturan varian padat: siluet dan kisi 60°-nya persis sama dengan varian garis
+supaya keduanya bertukar tanpa terasa bergeser; detail di dalam badan
+**dilubangi** dengan `fill-rule="evenodd"` — bukan digambar dengan warna latar —
+jadi ikon tetap benar di atas latar apa pun; tali, gagang, dan penghubung tetap
+berupa garis karena dipadatkan justru menggumpal di ukuran kecil.
+`balikinIconsFilled` adalah registry versi padatnya.
 
 ### Lencana pencapaian
 

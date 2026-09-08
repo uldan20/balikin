@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="none" stroke-linejoin="miter" stroke-miterlimit="8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Layer peta">
+<path d="M50 46 84 66 50 86 16 66 50 46Z" fill="currentColor" fill-opacity="0.3"/>
+<path d="M50 30 84 50 50 70 16 50 50 30Z" fill="currentColor" fill-opacity="0.55"/>
+<path d="M50 12 88 34 50 56 12 34 50 12ZM58 34L54 40.93L46 40.93L42 34L46 27.07L54 27.07Z" fill-rule="evenodd" clip-rule="evenodd" fill="currentColor"/>
+<path d="M55 34L52.5 38.33L47.5 38.33L45 34L47.5 29.67L52.5 29.67Z" fill="#C8952E"/>
+</svg>

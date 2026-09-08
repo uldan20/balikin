@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="none" stroke-linejoin="miter" stroke-miterlimit="8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dompet">
+<path d="M30 32 34 20h24l-3 12H30Z" fill="currentColor"/>
+<path d="M21 32H79L87 45.86V64.14L79 78H21L13 64.14V45.86ZM55 46h28v18H55Z" fill-rule="evenodd" clip-rule="evenodd" fill="currentColor"/>
+<path d="M78 55L74.5 61.06L67.5 61.06L64 55L67.5 48.94L74.5 48.94Z" fill="#C8952E"/>
+</svg>

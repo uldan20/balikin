@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="none" stroke-linejoin="miter" stroke-miterlimit="8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Baterai">
+<path d="M16 32H72L78 42.39V57.61L72 68H16L10 57.61V42.39ZM20 42h48v16H20Z" fill-rule="evenodd" clip-rule="evenodd" fill="currentColor"/>
+<path d="M82 42h7v16h-7z" fill="currentColor"/>
+<path d="M22 44h24v12H22z" fill="#C8952E"/>
+</svg>

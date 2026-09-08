@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="none" stroke-linejoin="miter" stroke-miterlimit="8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="10 Barang">
+<path d="M35 8H65L70 16.66V35.34L65 44H35L30 35.34V16.66Z" fill="#F3D77C"/>
+<path d="M13 52H43L48 60.66V79.34L43 88H13L8 79.34V60.66Z" fill="currentColor"/>
+<path d="M57 52H87L92 60.66V79.34L87 88H57L52 79.34V60.66Z" fill="currentColor"/>
+</svg>

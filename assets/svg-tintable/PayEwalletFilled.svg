@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="none" stroke-linejoin="miter" stroke-miterlimit="8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="E-wallet">
+<path d="M30 10h40l9 14v52l-9 14H30l-9-14V24l9-14Z M42 20h16v6H42Z M67 54L58.5 68.72L41.5 68.72L33 54L41.5 39.28L58.5 39.28Z" fill-rule="evenodd" clip-rule="evenodd" fill="currentColor"/>
+<path d="M63 54L56.5 65.26L43.5 65.26L37 54L43.5 42.74L56.5 42.74Z" fill="#C8952E"/>
+</svg>

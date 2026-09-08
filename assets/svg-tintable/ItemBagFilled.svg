@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="none" stroke-linejoin="miter" stroke-miterlimit="8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tas">
+<path d="M36 38V28l7-9h14l7 9v10" stroke="currentColor" stroke-width="6.5"/>
+<path d="M26 38H74L82 51.86V72.14L74 86H26L18 72.14V51.86ZM31 86V62h38v24H31Z" fill-rule="evenodd" clip-rule="evenodd" fill="currentColor"/>
+<path d="M58 74L54 80.93L46 80.93L42 74L46 67.07L54 67.07Z" fill="#C8952E"/>
+</svg>

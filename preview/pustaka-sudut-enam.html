@@ -1654,6 +1654,1116 @@ const achievementBadges = [{
   label: "Legenda",
   Icon: AchLegend
 }];
+/* Solid */
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * VARIAN PADAT (filled) untuk seluruh pustaka Sudut Enam.
+ *
+ * Dipakai untuk keadaan aktif/terpilih — tab yang sedang dibuka, kategori yang
+ * dipilih, status yang menonjol — berpasangan dengan varian garis untuk keadaan
+ * biasa. Aturannya:
+ *  1. Badan utama menjadi bidang penuh; kisi 60° dan siluetnya persis sama
+ *     dengan varian garis supaya keduanya bertukar tanpa terasa bergeser.
+ *  2. Detail di dalam badan dilubangi (fill-rule evenodd), bukan digambar ulang
+ *     dengan warna latar — jadi ikon tetap benar di atas latar apa pun.
+ *  3. Tali, gagang, dan penghubung tetap berupa garis: dipadatkan justru
+ *     membuat ikon menggumpal di ukuran kecil.
+ *  4. Aksen emas tetap satu titik per ikon.
+ */
+
+/** Bidang penuh. */
+const Fl = ({
+  d,
+  o
+}) => /*#__PURE__*/React.createElement("path", {
+  d: d,
+  fill: "currentColor",
+  fillOpacity: o
+});
+/** Bidang penuh dengan lubang (subpath kedua dan seterusnya jadi lubang). */
+const Hl = ({
+  d
+}) => /*#__PURE__*/React.createElement("path", {
+  d: d,
+  fillRule: "evenodd",
+  clipRule: "evenodd",
+  fill: "currentColor"
+});
+/** Aksen berwarna. */
+const Ac = ({
+  d,
+  c
+}) => /*#__PURE__*/React.createElement("path", {
+  d: d,
+  fill: c
+});
+/** Garis yang sengaja dibiarkan tetap garis. */
+const Ln = ({
+  d,
+  w = 7,
+  c,
+  o
+}) => /*#__PURE__*/React.createElement("path", {
+  d: d,
+  stroke: c ?? "currentColor",
+  strokeWidth: w,
+  strokeOpacity: o
+});
+
+/* ═══════════════════════════════════════════ Navigasi & Sistem UI */
+
+const SysSignalFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Sinyal"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M13 68h11v14H13zM33 56h11v26H33zM53 42h11v40H53z"
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: "M73 24h11v58H73z",
+  c: accent
+}));
+const SysWifiFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Wi-Fi"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M50 14 93 44 84 57 50 33 16 57 7 44 50 14Z"
+}), /*#__PURE__*/React.createElement(Fl, {
+  d: "M50 42 74 59 65 72 50 61 35 72 26 59 50 42Z"
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 82, 9),
+  c: accent
+}));
+const SysWifiOffFilled = ({
+  accent = tokens.red,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Wi-Fi terputus"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M50 14 93 44 84 57 50 33 16 57 7 44 50 14Z",
+  o: 0.3
+}), /*#__PURE__*/React.createElement(Fl, {
+  d: "M50 42 74 59 65 72 50 61 35 72 26 59 50 42Z",
+  o: 0.3
+}), /*#__PURE__*/React.createElement(Fl, {
+  d: hexFlat(50, 82, 9),
+  o: 0.3
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: "M16 10 90 76 82 86 8 20 16 10Z",
+  c: accent
+}));
+const SysBatteryFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Baterai"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `${cut(10, 32, 68, 36, 6)}M20 42h48v16H20Z`
+}), /*#__PURE__*/React.createElement(Fl, {
+  d: "M82 42h7v16h-7z"
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: "M22 44h24v12H22z",
+  c: accent
+}));
+const ArrowForwardFilled = p => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Lanjut"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M12 43h44V25l32 25-32 25V57H12V43Z"
+}));
+const ArrowUpFilled = p => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Ke atas"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M43 88V44H25L50 12l25 32H57v44H43Z"
+}));
+const ArrowDownloadFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Unduh"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M43 12h14v30h18L50 70 25 42h18V12Z"
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: "M20 78h60v9H20z",
+  c: accent
+}));
+const ChevronDownFilled = p => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Buka"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M50 71 17 38l11-11 22 22 22-22 11 11L50 71Z"
+}));
+const ActionCloseFilled = p => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Tutup"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M50 39 72 17l11 11-22 22 22 22-11 11-22-22-22 22-11-11 22-22-22-22 11-11 22 22Z"
+}));
+const ActionRefreshFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Muat ulang"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `${hexFlat(50, 52, 32)}${hexFlat(50, 52, 20)}M56 30 78 17l10 17-22 13Z`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: "M58 8 84 22 58 37Z",
+  c: accent
+}));
+const MapLayersFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Layer peta"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M50 46 84 66 50 86 16 66 50 46Z",
+  o: 0.3
+}), /*#__PURE__*/React.createElement(Fl, {
+  d: "M50 30 84 50 50 70 16 50 50 30Z",
+  o: 0.55
+}), /*#__PURE__*/React.createElement(Hl, {
+  d: `M50 12 88 34 50 56 12 34 50 12Z${hexFlat(50, 34, 8)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 34, 5),
+  c: accent
+}));
+const NavArrowFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Penunjuk arah"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `M16 44 86 14 56 86 46 54 16 44Z${hexFlat(50, 47, 7)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 47, 4.5),
+  c: accent
+}));
+
+/* ═══════════════════════════════════════ Bottom Bar & Akses Cepat */
+
+const NavHomeFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Beranda"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `M50 12 92 44v42H8V44L50 12Z${hexFlat(50, 55, 9)}M41 86V66h18v20H41Z`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 55, 5.5),
+  c: accent
+}));
+const NavSearchFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Cari"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `${hexFlat(42, 40, 24)}${hexFlat(42, 40, 11)}`
+}), /*#__PURE__*/React.createElement(Fl, {
+  d: "M54 56 78 78 70 87 46 65 54 56Z"
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(42, 40, 6.5),
+  c: accent
+}));
+const NavAddPostFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Buat laporan"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `${hexPointy(48, 52, 32)}M43 36h10v11h11v10H53v11H43V57H32V47h11V36Z`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(84, 19, 8),
+  c: accent
+}));
+const NavHistoryFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Riwayat"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `${hexFlat(50, 50, 30)}M45 26h10v24h17v10H45V26Z`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 50, 5),
+  c: accent
+}));
+const NavProfileFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Profil"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `${hexPointy(50, 33, 17)}${hexFlat(50, 33, 6)}`
+}), /*#__PURE__*/React.createElement(Fl, {
+  d: "M18 84 30 64h40l12 20H18Z"
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 33, 4),
+  c: accent
+}));
+const NavExploreFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Jelajah"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `${hexFlat(50, 50, 30)}M50 50 34 66 44 44 50 50Z`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: "M50 50 68 32 56 56 50 50Z",
+  c: accent
+}));
+const NavGridFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Semua menu"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: cut(12, 12, 33, 33, 6)
+}), /*#__PURE__*/React.createElement(Fl, {
+  d: cut(55, 12, 33, 33, 6)
+}), /*#__PURE__*/React.createElement(Fl, {
+  d: cut(12, 55, 33, 33, 6)
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: cut(55, 55, 33, 33, 6),
+  c: accent
+}));
+const NavReportsFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Laporan saya"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `${cut(16, 20, 68, 70, 9)}M32 48h36v8H32ZM32 64h24v8H32Z`
+}), /*#__PURE__*/React.createElement(Fl, {
+  d: "M37 11h26v17H37z"
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 34, 6),
+  c: accent
+}));
+
+/* ═══════════════════════════════════════════ Form, Media & Peta */
+
+const ActionPlusFilled = p => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Tambah"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M43 18h14v25h25v14H57v25H43V57H18V43h25V18Z"
+}));
+const FormCheckboxFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Kotak centang"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: cut(14, 14, 72, 72, 11)
+}), /*#__PURE__*/React.createElement(Ln, {
+  d: "M32 50 45 67 70 32",
+  w: 8,
+  c: accent
+}));
+const FormRadioFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Pilihan tunggal"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `${hexFlat(50, 50, 32)}${hexFlat(50, 50, 19)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 50, 13),
+  c: accent
+}));
+const FormToggleFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Sakelar"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `${cut(8, 30, 84, 40, 9)}${hexFlat(68, 50, 15)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(68, 50, 11),
+  c: accent
+}));
+const FormEyeFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Tampilkan"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `M10 50 50 24 90 50 50 76 10 50Z${hexFlat(50, 50, 13)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 50, 8),
+  c: accent
+}));
+const FormEyeOffFilled = ({
+  accent = tokens.red,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Sembunyikan"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `M10 50 50 24 90 50 50 76 10 50Z${hexFlat(50, 50, 13)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: "M16 10 90 76 82 86 8 20 16 10Z",
+  c: accent
+}));
+const ActionShutterFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Ambil foto"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `${hexPointy(50, 50, 36)}${hexPointy(50, 50, 21)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 50, 11),
+  c: accent
+}));
+const ActionFlashFilled = p => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Flash"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M60 8 27 55h19l-6 39 34-52H55l5-34Z"
+}));
+const ActionScanFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Pindai"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M11 19h26v10H21v14H11V19ZM63 19h26v24H79V29H63V19ZM79 57h10v24H63V71h16V57ZM11 57h10v14h16v10H11V57Z"
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: "M22 45h56v10H22z",
+  c: accent
+}));
+const FormPinFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Titik lokasi"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `M38 20h24l12 16v18L50 86 26 54V36L38 20Z${hexFlat(50, 42, 10)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 42, 6),
+  c: accent
+}));
+const FormCalendarFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Kalender"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M28 10h9v16h-9zM63 10h9v16h-9z"
+}), /*#__PURE__*/React.createElement(Hl, {
+  d: `${cut(11, 24, 78, 62, 9)}M14 40h72v6H14Z${hexFlat(58, 63, 8)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(35, 63, 8),
+  c: accent
+}));
+
+/* ═══════════════════════════════════════════════ Kategori Barang */
+
+const ItemBagWalletFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Tas & Dompet"
+}, p), /*#__PURE__*/React.createElement(Ac, {
+  d: "M65 50 71 36h14l-4 14H65Z",
+  c: accent
+}), /*#__PURE__*/React.createElement(Ln, {
+  d: "M37 50V38l7-12h12l7 12v12",
+  w: 6.5
+}), /*#__PURE__*/React.createElement(Hl, {
+  d: `M16 50h68v20l-8 14H24l-8-14V50Z${hexFlat(50, 65, 9)}M30 75h40v6H30Z`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 65, 5.5),
+  c: accent
+}));
+const ItemBagFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Tas"
+}, p), /*#__PURE__*/React.createElement(Ln, {
+  d: "M36 38V28l7-9h14l7 9v10",
+  w: 6.5
+}), /*#__PURE__*/React.createElement(Hl, {
+  d: `${cut(18, 38, 64, 48, 8)}M31 86V62h38v24H31Z`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 74, 8),
+  c: accent
+}));
+const ItemWalletFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Dompet"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M30 32 34 20h24l-3 12H30Z"
+}), /*#__PURE__*/React.createElement(Hl, {
+  d: `${cut(13, 32, 74, 46, 8)}M55 46h28v18H55Z`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(71, 55, 7),
+  c: accent
+}));
+const ItemKeysFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Kunci"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `${hexFlat(31, 50, 19)}${hexFlat(31, 50, 8)}`
+}), /*#__PURE__*/React.createElement(Fl, {
+  d: "M46 46h42v9H46zM70 46h9v17h-9zM82 46h8v12h-8z"
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(31, 50, 5),
+  c: accent
+}));
+const ItemElectronicsFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "HP & Elektronik"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `M35 13h30l9 14v46l-9 14H35l-9-14V27l9-14Z M42 21h16v6H42Z M56 36 40 57h10l-6 21 16-21H50l6-21Z`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: "M56 36 40 57h10l-6 21 16-21H50l6-21Z",
+  c: accent
+}));
+const ItemDocumentsFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Dokumen"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M12 22h26l7 12H12V22Z"
+}), /*#__PURE__*/React.createElement(Hl, {
+  d: `${cut(12, 36, 76, 46, 8)}M28 50h32v7H28ZM28 63h22v7H28Z`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(72, 62, 7),
+  c: accent
+}));
+const ItemIdCardFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Kartu identitas"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `${cut(11, 28, 78, 44, 8)}${hexFlat(34, 50, 12)}M54 56h16v6H54Z`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: "M54 41h24v7H54z",
+  c: accent
+}));
+const ItemPetsFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Hewan"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: hexFlat(26, 34, 9)
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(44, 24, 9),
+  c: accent
+}), /*#__PURE__*/React.createElement(Fl, {
+  d: hexFlat(63, 26, 9)
+}), /*#__PURE__*/React.createElement(Fl, {
+  d: hexFlat(80, 40, 9)
+}), /*#__PURE__*/React.createElement(Fl, {
+  d: "M39 54h30l10 17-10 17H39L29 71l10-17Z"
+}));
+const ItemJewelryFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Perhiasan"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `${hexFlat(50, 64, 25)}${hexFlat(50, 64, 13)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 28, 15),
+  c: accent
+}));
+const ItemOthersFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Lainnya"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `${cut(18, 44, 64, 40, 7)}M46 44h8v40h-8Z`
+}), /*#__PURE__*/React.createElement(Hl, {
+  d: `${cut(11, 28, 78, 18, 6)}M46 28h8v18h-8Z`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: "M46 28h8v56h-8z",
+  c: accent
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(39, 22, 7),
+  c: accent
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(61, 22, 7),
+  c: accent
+}));
+const ItemGlassesFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Kacamata"
+}, p), /*#__PURE__*/React.createElement(Ln, {
+  d: "M12 40 22 30M88 40 78 30",
+  w: 6
+}), /*#__PURE__*/React.createElement(Hl, {
+  d: `${hexFlat(28, 56, 18)}${hexFlat(28, 56, 8)}`
+}), /*#__PURE__*/React.createElement(Hl, {
+  d: `${hexFlat(72, 56, 18)}${hexFlat(72, 56, 8)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: "M44 52h12v8H44z",
+  c: accent
+}));
+const ItemUmbrellaFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Payung"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M8 54 50 16 92 54 79 46 65 54 50 46 35 54 21 46 8 54Z"
+}), /*#__PURE__*/React.createElement(Ln, {
+  d: "M50 50v28l-12 8",
+  w: 6.5
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 18, 7),
+  c: accent
+}));
+const ItemTumblerFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Tumbler"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M28 18h44v8H28z"
+}), /*#__PURE__*/React.createElement(Hl, {
+  d: `M32 26h36v46l-6 16H38l-6-16V26Z M34 44h32v10H34Z`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: "M34 44h32v10H34z",
+  c: accent
+}));
+
+/* ═════════════════════════════════════ Badge, Gamifikasi & Status */
+
+const StatusLostFilled = ({
+  accent = tokens.redLight,
+  tone = tokens.red,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Hilang"
+}, p), /*#__PURE__*/React.createElement("path", {
+  fillRule: "evenodd",
+  clipRule: "evenodd",
+  d: `M38 20h24l12 16v18L50 86 26 54V36L38 20Z${hexFlat(50, 42, 11)}`,
+  fill: tone
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 42, 6),
+  c: accent
+}));
+const StatusFoundFilled = ({
+  accent = tokens.goldLight,
+  tone = tokens.primary,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Ditemukan"
+}, p), /*#__PURE__*/React.createElement("path", {
+  d: "M38 20h24l12 16v18L50 86 26 54V36L38 20Z",
+  fill: tone
+}), /*#__PURE__*/React.createElement(Ln, {
+  d: "M39 41 47 54 63 32",
+  w: 7,
+  c: accent
+}));
+const StatusReturnedFilled = ({
+  accent = tokens.goldLight,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Sudah kembali"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: hexPointy(50, 50, 34)
+}), /*#__PURE__*/React.createElement(Ln, {
+  d: "M35 50 46 66 68 30",
+  w: 8,
+  c: accent
+}));
+const StatusRejectedFilled = ({
+  accent = tokens.red,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Ditolak"
+}, p), /*#__PURE__*/React.createElement("path", {
+  fillRule: "evenodd",
+  clipRule: "evenodd",
+  d: `${hexPointy(50, 50, 34)}M50 42 62 30l8 8-12 12 12 12-8 8-12-12-12 12-8-8 12-12-12-12 8-8 12 12Z`,
+  fill: accent
+}));
+const StatusAlertFilled = ({
+  accent = tokens.red,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Perhatian"
+}, p), /*#__PURE__*/React.createElement("path", {
+  fillRule: "evenodd",
+  clipRule: "evenodd",
+  d: `${hexPointy(50, 50, 34)}M45 26h10v30H45Z${hexFlat(50, 68, 6)}`,
+  fill: accent
+}));
+const VerifiedBadgeFilled = ({
+  accent = tokens.goldLight,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Terverifikasi"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: hexPointy(50, 50, 34)
+}), /*#__PURE__*/React.createElement(Ln, {
+  d: "M36 50 46 64 66 34",
+  w: 7.5,
+  c: accent
+}));
+const VerifiedMiniFilled = ({
+  accent = tokens.goldLight,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Terverifikasi"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: hexPointy(50, 50, 34)
+}), /*#__PURE__*/React.createElement(Ln, {
+  d: "M36 50 46 63 66 35",
+  w: 8,
+  c: accent
+}));
+const BadgeLockFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Terkunci"
+}, p), /*#__PURE__*/React.createElement(Ln, {
+  d: "M33 46V33l9-11h16l9 11v13",
+  w: 6.5
+}), /*#__PURE__*/React.createElement(Hl, {
+  d: `${cut(19, 46, 62, 38, 8)}${hexFlat(50, 65, 10)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 65, 6),
+  c: accent
+}));
+const BadgeShieldFilled = ({
+  accent = tokens.goldLight,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Terlindungi"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M50 12 82 24v26L50 88 18 50V24L50 12Z"
+}), /*#__PURE__*/React.createElement(Ln, {
+  d: "M36 47 47 60 66 34",
+  w: 7,
+  c: accent
+}));
+const BadgeStarFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Rating"
+}, p), /*#__PURE__*/React.createElement(Ac, {
+  d: "M50 14 58.6 40.3 86.3 40.3 63.9 56.6 72.4 82.9 50 66.6 27.6 82.9 36.1 56.6 13.7 40.3 41.4 40.3Z",
+  c: accent
+}));
+const BadgeCrownFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Mahkota"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `M12 76V28l19 16 19-26 19 26 19-16v48H12Z${hexFlat(50, 60, 10)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 60, 6),
+  c: accent
+}));
+const BadgeEyeFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Mata elang"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `M8 52 46 26 84 52 46 78 8 52Z${hexFlat(46, 52, 13)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(46, 52, 8),
+  c: accent
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: star4(84, 22, 12),
+  c: accent
+}));
+const BadgeScalesFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Adil"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M46 24h8v58h-8zM16 30h68v8H16zM32 80h36v8H32z"
+}), /*#__PURE__*/React.createElement(Fl, {
+  d: "M10 58 22 36 34 58H10ZM66 58 78 36 90 58H66Z"
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 22, 8),
+  c: accent
+}));
+const ActionSettingsFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Pengaturan"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M82 45h12v10H82zM6 45h12v10H6zM63 74l9-5 6 10-9 5zM28 21l9-5 6 10-9 5zM28 79l6-10 9 5-6 10zM63 26l6-10 9 5-6 10z"
+}), /*#__PURE__*/React.createElement(Hl, {
+  d: `${hexFlat(50, 50, 32)}${hexFlat(50, 50, 15)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 50, 11),
+  c: accent
+}));
+const RewardBadgeFilled = ({
+  accent = tokens.goldLight,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Apresiasi"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M34 66h32v26l-16-9-16 9V66Z"
+}), /*#__PURE__*/React.createElement(Fl, {
+  d: hexPointy(50, 44, 30)
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: star4(50, 44, 18),
+  c: accent
+}));
+const RewardCoinFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Poin"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `${hexFlat(50, 50, 34)}${hexFlat(50, 50, 22)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 50, 18),
+  c: accent
+}));
+
+/* ══════════════════════════════════════ Tindakan & Utilitas, Pay */
+
+const ActionFilterFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Filter"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `M13 26h74L58 51.4v25.6l-16 8V51.4L13 26Z${hexFlat(50, 36, 8)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 36, 5),
+  c: accent
+}));
+const ActionNotificationFilled = ({
+  accent = tokens.red,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Notifikasi"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M28 68V44l10-12h24l10 12v24l6 8H22l6-8Z"
+}), /*#__PURE__*/React.createElement(Fl, {
+  d: "M40 82h20l-4 8h-12l-4-8Z"
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(75, 25, 11),
+  c: accent
+}));
+const ActionChatFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Percakapan"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: cut(52, 52, 38, 30, 6),
+  o: 0.3
+}), /*#__PURE__*/React.createElement(Hl, {
+  d: `${cut(10, 18, 54, 34, 7)}M24 52 20 70l16-18Z${hexFlat(23, 35, 5)}${hexFlat(37, 35, 5)}${hexFlat(51, 35, 5)}`
+}), /*#__PURE__*/React.createElement(Fl, {
+  d: "M24 48h12v22l-16 4 4-26Z"
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(37, 35, 5),
+  c: accent
+}));
+const ActionLocationFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Lokasi"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `M10 30 34 22 58 30 82 22v52L58 82 34 74 10 82V30Z M31 26h6v52h-6Z M55 34h6v52h-6Z`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(46, 46, 8),
+  c: accent
+}));
+const ActionShareFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Bagikan"
+}, p), /*#__PURE__*/React.createElement(Ln, {
+  d: "M33 45 65 29M33 55 65 71",
+  w: 6,
+  o: 0.5
+}), /*#__PURE__*/React.createElement(Fl, {
+  d: hexFlat(24, 50, 11)
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(74, 24, 11),
+  c: accent
+}), /*#__PURE__*/React.createElement(Fl, {
+  d: hexFlat(74, 76, 11)
+}));
+const ActionCameraFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Kamera"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M35 32 41 20h18l6 12H35Z"
+}), /*#__PURE__*/React.createElement(Hl, {
+  d: `${cut(11, 32, 78, 48, 8)}${hexFlat(50, 56, 16)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 56, 10),
+  c: accent
+}));
+const ActionBookmarkFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Simpan"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `M26 18h48v64L50 68 26 82V18Z${hexFlat(50, 42, 9)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 42, 5.5),
+  c: accent
+}));
+const ActionMailFilled = ({
+  accent = tokens.goldLight,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Email"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: cut(9, 24, 82, 52, 9)
+}), /*#__PURE__*/React.createElement(Ln, {
+  d: "M16 32 50 57 84 32",
+  w: 6.5,
+  c: accent
+}));
+const ActionBackFilled = p => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Kembali"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M88 43H44V25L12 50l32 25V57h44V43Z"
+}));
+const ActionTipFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Tip & terima kasih"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `M50 84 20 55V41L32 29h10l8 8 8-8h10l12 12v14L50 84Z${hexFlat(50, 52, 10)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 52, 6),
+  c: accent
+}));
+const ActionReputationFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Reputasi"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `${star4(50, 50, 34)}${hexFlat(50, 50, 10)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 50, 6),
+  c: accent
+}));
+const ActionSparkleFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Sorotan"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: star4(40, 44, 30)
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: star4(76, 70, 14),
+  c: accent
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: star4(78, 24, 9),
+  c: accent
+}));
+const PayQrFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "QRIS"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `${cut(11, 11, 32, 32, 6)}${hexFlat(27, 27, 7)}`
+}), /*#__PURE__*/React.createElement(Hl, {
+  d: `${cut(57, 11, 32, 32, 6)}${hexFlat(73, 27, 7)}`
+}), /*#__PURE__*/React.createElement(Hl, {
+  d: `${cut(11, 57, 32, 32, 6)}${hexFlat(27, 73, 7)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(63, 63, 9),
+  c: accent
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(83, 63, 7),
+  c: accent
+}), /*#__PURE__*/React.createElement(Fl, {
+  d: hexFlat(63, 83, 7)
+}), /*#__PURE__*/React.createElement(Fl, {
+  d: hexFlat(83, 83, 9)
+}));
+const PayBankFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Bank"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M50 12 92 38H8L50 12Z"
+}), /*#__PURE__*/React.createElement(Fl, {
+  d: "M22 46h10v26H22zM38 46h10v26H38zM54 46h10v26H54zM70 46h10v26H70z"
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: "M10 78h80v10H10z",
+  c: accent
+}));
+const PayEwalletFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "E-wallet"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `M30 10h40l9 14v52l-9 14H30l-9-14V24l9-14Z M42 20h16v6H42Z ${hexFlat(50, 54, 17)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 54, 13),
+  c: accent
+}));
+const PayCardFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Kartu ATM"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `${cut(9, 24, 82, 52, 9)}M12 38h76v9H12Z`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(30, 60, 9),
+  c: accent
+}));
+const ActionCopyLinkFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Salin tautan"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: cut(34, 10, 56, 56, 8),
+  o: 0.3
+}), /*#__PURE__*/React.createElement(Hl, {
+  d: `${cut(10, 34, 56, 56, 8)}${hexFlat(38, 62, 11)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(38, 62, 7),
+  c: accent
+}));
+
+/* ═══════════════════════════════════════════ Lencana Pencapaian */
+
+const AchFirstReturnFilled = ({
+  accent = tokens.goldLight,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Balik Pertama"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M43 82 15 55l11-12 17 16 32-38 12 10-44 51Z"
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(20, 40, 9),
+  c: accent
+}));
+const AchTenItemsFilled = ({
+  accent = tokens.goldLight,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "10 Barang"
+}, p), /*#__PURE__*/React.createElement(Ac, {
+  d: cut(30, 8, 40, 36, 5),
+  c: accent
+}), /*#__PURE__*/React.createElement(Fl, {
+  d: cut(8, 52, 40, 36, 5)
+}), /*#__PURE__*/React.createElement(Fl, {
+  d: cut(52, 52, 40, 36, 5)
+}));
+const AchFastReplyFilled = ({
+  accent = tokens.goldLight,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Balas Cepat"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M10 20h80v44H48L26 86V64H10V20Z"
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: "M58 26 38 52h11l-4 20 19-28H52l6-18Z",
+  c: accent
+}));
+const AchEagleEyeFilled = ({
+  accent = tokens.goldLight,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Mata Elang"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `M8 50 50 22 92 50 50 78 8 50Z${hexFlat(50, 50, 15)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 50, 10),
+  c: accent
+}));
+const AchDocsFilled = ({
+  accent = tokens.goldLight,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Dokumen"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `M22 10h36l20 20v60H22V10Z M34 50h32v8H34Z M34 66h22v8H34Z`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: "M34 50h32v8H34zM34 66h22v8H34z",
+  c: accent
+}));
+const AchNightWatchFilled = ({
+  accent = tokens.goldLight,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Jaga Malam"
+}, p), /*#__PURE__*/React.createElement("path", {
+  d: "M64 12A40 40 0 1 0 64 88A46 46 0 1 1 64 12Z",
+  fill: "currentColor"
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: star4(80, 76, 12),
+  c: accent
+}));
+const AchZeroDisputeFilled = ({
+  accent = tokens.goldLight,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Nol Sengketa"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `M50 8 90 20v28L50 92 10 48V20L50 8Z${hexPointy(50, 45, 17)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexPointy(50, 45, 12),
+  c: accent
+}));
+const AchMoverFilled = ({
+  accent = tokens.goldLight,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Penggerak"
+}, p), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 28, 18),
+  c: accent
+}), /*#__PURE__*/React.createElement(Fl, {
+  d: hexFlat(26, 68, 18)
+}), /*#__PURE__*/React.createElement(Fl, {
+  d: hexFlat(74, 68, 18)
+}));
+const AchLegendFilled = ({
+  accent = tokens.goldLight,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Legenda"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: star4(46, 52, 40)
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: star4(84, 16, 13),
+  c: accent
+}));
 /* index */
 const all = {
   SysSignal,
@@ -1742,7 +2852,93 @@ const all = {
   AchZeroDispute,
   AchMover,
   AchLegend,
-  achievementBadges
+  achievementBadges,
+  SysSignalFilled,
+  SysWifiFilled,
+  SysWifiOffFilled,
+  SysBatteryFilled,
+  ArrowForwardFilled,
+  ArrowUpFilled,
+  ArrowDownloadFilled,
+  ChevronDownFilled,
+  ActionCloseFilled,
+  ActionRefreshFilled,
+  MapLayersFilled,
+  NavArrowFilled,
+  NavHomeFilled,
+  NavSearchFilled,
+  NavAddPostFilled,
+  NavHistoryFilled,
+  NavProfileFilled,
+  NavExploreFilled,
+  NavGridFilled,
+  NavReportsFilled,
+  ActionPlusFilled,
+  FormCheckboxFilled,
+  FormRadioFilled,
+  FormToggleFilled,
+  FormEyeFilled,
+  FormEyeOffFilled,
+  ActionShutterFilled,
+  ActionFlashFilled,
+  ActionScanFilled,
+  FormPinFilled,
+  FormCalendarFilled,
+  ItemBagWalletFilled,
+  ItemBagFilled,
+  ItemWalletFilled,
+  ItemKeysFilled,
+  ItemElectronicsFilled,
+  ItemDocumentsFilled,
+  ItemIdCardFilled,
+  ItemPetsFilled,
+  ItemJewelryFilled,
+  ItemOthersFilled,
+  ItemGlassesFilled,
+  ItemUmbrellaFilled,
+  ItemTumblerFilled,
+  StatusLostFilled,
+  StatusFoundFilled,
+  StatusReturnedFilled,
+  StatusRejectedFilled,
+  StatusAlertFilled,
+  VerifiedBadgeFilled,
+  VerifiedMiniFilled,
+  BadgeLockFilled,
+  BadgeShieldFilled,
+  BadgeStarFilled,
+  BadgeCrownFilled,
+  BadgeEyeFilled,
+  BadgeScalesFilled,
+  ActionSettingsFilled,
+  RewardBadgeFilled,
+  RewardCoinFilled,
+  ActionFilterFilled,
+  ActionNotificationFilled,
+  ActionChatFilled,
+  ActionLocationFilled,
+  ActionShareFilled,
+  ActionCameraFilled,
+  ActionBookmarkFilled,
+  ActionMailFilled,
+  ActionBackFilled,
+  ActionTipFilled,
+  ActionReputationFilled,
+  ActionSparkleFilled,
+  PayQrFilled,
+  PayBankFilled,
+  PayEwalletFilled,
+  PayCardFilled,
+  ActionCopyLinkFilled,
+  AchFirstReturnFilled,
+  AchTenItemsFilled,
+  AchFastReplyFilled,
+  AchEagleEyeFilled,
+  AchDocsFilled,
+  AchNightWatchFilled,
+  AchZeroDisputeFilled,
+  AchMoverFilled,
+  AchLegendFilled
 };
 const g = (group, rows) => ({
   group,
@@ -1755,6 +2951,16 @@ const g = (group, rows) => ({
 
 /** Pustaka lengkap, dikelompokkan mengikuti rekap ikon aplikasi Balikin. */
 const balikinIcons = [g("Navigasi & Sistem UI", [["SysSignal", "Sinyal"], ["SysWifi", "Wi-Fi"], ["SysWifiOff", "Wi-Fi terputus"], ["SysBattery", "Baterai"], ["ArrowUp", "Ke atas"], ["ArrowForward", "Lanjut"], ["ActionBack", "Kembali"], ["ArrowDownload", "Unduh"], ["ChevronDown", "Buka"], ["ActionClose", "Tutup"], ["ActionRefresh", "Muat ulang"], ["ActionShare", "Bagikan"], ["MapLayers", "Layer peta"], ["NavArrow", "Penunjuk arah"], ["ActionNotification", "Notifikasi"], ["ActionBookmark", "Simpan"], ["ActionMail", "Email"]]), g("Bottom Bar & Akses Cepat", [["NavHome", "Beranda"], ["NavExplore", "Jelajah"], ["NavGrid", "Semua menu"], ["NavAddPost", "Lapor"], ["ActionChat", "Chat"], ["NavProfile", "Profil"], ["NavReports", "Laporan saya"], ["NavHistory", "Riwayat"]]), g("Form, Media & Peta", [["NavSearch", "Cari"], ["ActionPlus", "Tambah"], ["FormCheckbox", "Kotak centang"], ["FormRadio", "Pilihan tunggal"], ["FormToggle", "Sakelar"], ["FormEye", "Tampilkan"], ["FormEyeOff", "Sembunyikan"], ["ActionShutter", "Ambil foto"], ["ActionFlash", "Flash"], ["ActionScan", "Pindai"], ["FormPin", "Titik lokasi"], ["FormCalendar", "Kalender"], ["ActionCamera", "Kamera"], ["ActionLocation", "Peta"], ["ActionFilter", "Filter"]]), g("Badge, Gamifikasi & Status", [["StatusLost", "Hilang"], ["StatusFound", "Ditemukan"], ["StatusReturned", "Sudah kembali"], ["StatusRejected", "Ditolak"], ["StatusAlert", "Perhatian"], ["VerifiedBadge", "Terverifikasi"], ["VerifiedMini", "Terverifikasi padat"], ["BadgeShield", "Terlindungi"], ["BadgeLock", "Terkunci"], ["BadgeStar", "Rating"], ["BadgeCrown", "Mahkota"], ["BadgeEye", "Mata elang"], ["BadgeScales", "Adil"], ["RewardBadge", "Apresiasi"], ["RewardCoin", "Poin"], ["ActionReputation", "Reputasi"], ["ActionSparkle", "Sorotan AI"], ["ActionTip", "Tip"], ["ActionSettings", "Pengaturan"]]), g("Keuangan, Tip & Bagikan", [["PayQr", "QRIS"], ["PayBank", "Bank"], ["PayEwallet", "E-wallet"], ["PayCard", "Kartu ATM"], ["ActionCopyLink", "Salin tautan"]]), g("Lencana Pencapaian", [["AchFirstReturn", "Balik Pertama"], ["AchTenItems", "10 Barang"], ["AchFastReply", "Balas Cepat"], ["AchEagleEye", "Mata Elang"], ["AchDocs", "Dokumen"], ["AchNightWatch", "Jaga Malam"], ["AchZeroDispute", "Nol Sengketa"], ["AchMover", "Penggerak"], ["AchLegend", "Legenda"]]), g("Kategori Barang", [["ItemBagWallet", "Tas & Dompet"], ["ItemBag", "Tas"], ["ItemWallet", "Dompet"], ["ItemKeys", "Kunci"], ["ItemElectronics", "HP & Elektronik"], ["ItemDocuments", "Dokumen"], ["ItemIdCard", "Kartu identitas"], ["ItemGlasses", "Kacamata"], ["ItemUmbrella", "Payung"], ["ItemTumbler", "Tumbler"], ["ItemPets", "Hewan"], ["ItemJewelry", "Perhiasan"], ["ItemOthers", "Lainnya"]])];
+
+/** Registry yang sama, tetapi memakai varian padat (filled) tiap ikon. */
+const balikinIconsFilled = balikinIcons.map(g => ({
+  group: g.group,
+  items: g.items.map(i => ({
+    ...i,
+    id: `${i.id}Filled`,
+    Icon: all[`${i.id}Filled`]
+  }))
+}));
 const SPECS = [["Sumbu", "0° · 30° · 60° · 90°"], ["Sudut", "dipangkas 60°, sambungan mitre"], ["Tebal", "7 · 6.5 · 5.5"], ["Aksen", "emas #C8952E, satu per ikon"]];
 const Hex = ({
   fill
@@ -1770,8 +2976,10 @@ const Hex = ({
   d: "M42.2 7.5Q50 3 57.8 7.5L82.7 22Q90.5 26.5 90.5 35.5v29Q90.5 73.5 82.7 78L57.8 92.5Q50 97 42.2 92.5L17.3 78Q9.5 73.5 9.5 64.5v-29Q9.5 26.5 17.3 22Z",
   fill: fill
 }));
-const BY_ID = Object.fromEntries(balikinIcons.flatMap(g => g.items.map(i => [i.id, i.Icon])));
+const BY_ID = Object.fromEntries([...balikinIcons, ...balikinIconsFilled].flatMap(g => g.items.map(i => [i.id, i.Icon])));
 function App() {
+  const [solid, setSolid] = React.useState(false);
+  const sets = solid ? balikinIconsFilled : balikinIcons;
   const total = balikinIcons.reduce((n, g) => n + g.items.length, 0);
   return /*#__PURE__*/React.createElement("div", {
     className: "wrap"
@@ -1783,7 +2991,26 @@ function App() {
     className: "specs"
   }, SPECS.map(([k, v]) => /*#__PURE__*/React.createElement("li", {
     key: k
-  }, k, " ", /*#__PURE__*/React.createElement("b", null, v))))), balikinIcons.map(g => /*#__PURE__*/React.createElement("section", {
+  }, k, " ", /*#__PURE__*/React.createElement("b", null, v)))), /*#__PURE__*/React.createElement("div", {
+    className: "bar"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "bar-label"
+  }, "Varian"), /*#__PURE__*/React.createElement("div", {
+    className: "grounds"
+  }, /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    "aria-pressed": !solid,
+    onClick: () => setSolid(false)
+  }, "Garis"), /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    "aria-pressed": solid,
+    onClick: () => setSolid(true)
+  }, "Padat")), /*#__PURE__*/React.createElement("span", {
+    className: "note",
+    style: {
+      fontSize: 13
+    }
+  }, "Padat untuk keadaan aktif atau terpilih; garis untuk keadaan biasa."))), sets.map(g => /*#__PURE__*/React.createElement("section", {
     key: g.group
   }, /*#__PURE__*/React.createElement("h2", null, g.group, " ", /*#__PURE__*/React.createElement("span", {
     className: "count"

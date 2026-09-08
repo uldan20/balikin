@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="none" stroke-linejoin="miter" stroke-miterlimit="8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Laporan saya">
+<path d="M25 20H75L84 35.59V74.41L75 90H25L16 74.41V35.59ZM32 48h36v8H32ZM32 64h24v8H32Z" fill-rule="evenodd" clip-rule="evenodd" fill="#1B7A6E"/>
+<path d="M37 11h26v17H37z" fill="#1B7A6E"/>
+<path d="M56 34L53 39.2L47 39.2L44 34L47 28.8L53 28.8Z" fill="#C8952E"/>
+</svg>

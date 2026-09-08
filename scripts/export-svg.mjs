@@ -21,20 +21,20 @@ const arg = (name, fallback) => {
 const COLOR = arg("color", "#1B7A6E");
 const OUT = path.resolve(arg("out", "assets/svg"));
 const SRC = path.resolve("src/icons/hexcut");
-const FILES = ["base", "System", "Nav", "Form", "Items", "Status", "Badges", "Actions", "Pay", "Achievements"];
+const FILES = ["base", "System", "Nav", "Form", "Items", "Status", "Badges", "Actions", "Pay", "Achievements", "Solid"];
 
 /** Gabungkan semua modul jadi satu sumber, buang import/export antar-file. */
 let bundle = "";
 const iconNames = [];
 for (const f of FILES) {
-  const src = fs
-    .readFileSync(path.join(SRC, `${f}.tsx`), "utf8")
+  const raw = fs.readFileSync(path.join(SRC, `${f}.tsx`), "utf8");
+  const src = raw
     .replace(/^import [\s\S]*?;\n/gm, "")
     .replace(/^export const/gm, "const")
     .replace(/^export type/gm, "type");
   if (f !== "base") {
-    // hanya komponen: nama PascalCase, bukan pembantu seperti path bersama
-    for (const m of src.matchAll(/^const ([A-Z]\w+) = /gm)) iconNames.push(m[1]);
+    // hanya komponen yang benar-benar diekspor — bukan pembantu internal
+    for (const m of raw.matchAll(/^export const ([A-Z]\w+) = /gm)) iconNames.push(m[1]);
   }
   bundle += Babel.transform(src, {
     filename: `${f}.tsx`,

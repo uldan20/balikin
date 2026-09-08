@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="none" stroke-linejoin="miter" stroke-miterlimit="8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Apresiasi">
+<path d="M34 66h32v26l-16-9-16 9V66Z" fill="currentColor"/>
+<path d="M50 14L75.98 29L75.98 59L50 74L24.02 59L24.02 29Z" fill="currentColor"/>
+<path d="M50 26L55.4 38.6L68 44L55.4 49.4L50 62L44.6 49.4L32 44L44.6 38.6Z" fill="#F3D77C"/>
+</svg>

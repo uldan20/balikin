@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="none" stroke-linejoin="miter" stroke-miterlimit="8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lokasi">
+<path d="M10 30 34 22 58 30 82 22v52L58 82 34 74 10 82V30Z M31 26h6v52h-6Z M55 34h6v52h-6Z" fill-rule="evenodd" clip-rule="evenodd" fill="currentColor"/>
+<path d="M54 46L50 52.93L42 52.93L38 46L42 39.07L50 39.07Z" fill="#C8952E"/>
+</svg>

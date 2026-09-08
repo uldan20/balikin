@@ -8,6 +8,7 @@ export * from "./Badges";
 export * from "./Actions";
 export * from "./Pay";
 export * from "./Achievements";
+export * from "./Solid";
 
 import * as Sys from "./System";
 import * as Nav from "./Nav";
@@ -18,8 +19,9 @@ import * as Badges from "./Badges";
 import * as Actions from "./Actions";
 import * as Pay from "./Pay";
 import * as Ach from "./Achievements";
+import * as Solid from "./Solid";
 
-const all: Record<string, any> = { ...Sys, ...Nav, ...Form, ...Items, ...Status, ...Badges, ...Actions, ...Pay, ...Ach };
+const all: Record<string, any> = { ...Sys, ...Nav, ...Form, ...Items, ...Status, ...Badges, ...Actions, ...Pay, ...Ach, ...Solid };
 
 const g = (group: string, rows: [string, string][]) => ({
   group,
@@ -77,3 +79,9 @@ export const balikinIcons = [
     ["ItemOthers", "Lainnya"],
   ]),
 ];
+
+/** Registry yang sama, tetapi memakai varian padat (filled) tiap ikon. */
+export const balikinIconsFilled = balikinIcons.map((g) => ({
+  group: g.group,
+  items: g.items.map((i) => ({ ...i, id: `${i.id}Filled`, Icon: all[`${i.id}Filled`] })),
+}));

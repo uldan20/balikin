@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="none" stroke-linejoin="miter" stroke-miterlimit="8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kunci">
+<path d="M50 50L40.5 66.45L21.5 66.45L12 50L21.5 33.55L40.5 33.55ZM39 50L35 56.93L27 56.93L23 50L27 43.07L35 43.07Z" fill-rule="evenodd" clip-rule="evenodd" fill="currentColor"/>
+<path d="M46 46h42v9H46zM70 46h9v17h-9zM82 46h8v12h-8z" fill="currentColor"/>
+<path d="M36 50L33.5 54.33L28.5 54.33L26 50L28.5 45.67L33.5 45.67Z" fill="#C8952E"/>
+</svg>

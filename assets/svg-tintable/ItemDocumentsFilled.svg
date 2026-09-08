@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="none" stroke-linejoin="miter" stroke-miterlimit="8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dokumen">
+<path d="M12 22h26l7 12H12V22Z" fill="currentColor"/>
+<path d="M20 36H80L88 49.86V68.14L80 82H20L12 68.14V49.86ZM28 50h32v7H28ZM28 63h22v7H28Z" fill-rule="evenodd" clip-rule="evenodd" fill="currentColor"/>
+<path d="M79 62L75.5 68.06L68.5 68.06L65 62L68.5 55.94L75.5 55.94Z" fill="#C8952E"/>
+</svg>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="none" stroke-linejoin="miter" stroke-miterlimit="8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Penunjuk arah">
+<path d="M16 44 86 14 56 86 46 54 16 44ZM57 47L53.5 53.06L46.5 53.06L43 47L46.5 40.94L53.5 40.94Z" fill-rule="evenodd" clip-rule="evenodd" fill="currentColor"/>
+<path d="M54.5 47L52.25 50.9L47.75 50.9L45.5 47L47.75 43.1L52.25 43.1Z" fill="#C8952E"/>
+</svg>
