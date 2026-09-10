@@ -37,7 +37,8 @@ export const balikinIcons = [
     ["ActionClose", "Tutup"], ["ActionRefresh", "Muat ulang"], ["ActionShare", "Bagikan"],
     ["MapLayers", "Layer peta"], ["NavArrow", "Penunjuk arah"],
     ["ActionNotification", "Notifikasi"], ["ActionBookmark", "Simpan"],
-    ["ActionMail", "Email"],
+    ["ActionMail", "Email"], ["ActionMore", "Lainnya"], ["ActionList", "Daftar"],
+    ["ActionShareLocation", "Bagikan lokasi"], ["ActionHandover", "Serah terima"],
   ]),
   g("Bottom Bar & Akses Cepat", [
     ["NavHome", "Beranda"], ["NavExplore", "Jelajah"], ["NavGrid", "Semua menu"],

@@ -563,6 +563,40 @@ export const ActionBookmarkFilled = ({ accent = tokens.gold, ...p }: IconProps) 
   </Hexcut>
 );
 
+export const ActionMoreFilled = ({ accent = tokens.gold, ...p }: IconProps) => (
+  <Hexcut title="Lainnya" {...p}>
+    <Fl d={hexFlat(20, 50, 11)} />
+    <Ac d={hexFlat(50, 50, 11)} c={accent} />
+    <Fl d={hexFlat(80, 50, 11)} />
+  </Hexcut>
+);
+
+export const ActionListFilled = ({ accent = tokens.gold, ...p }: IconProps) => (
+  <Hexcut title="Daftar" {...p}>
+    <Ac d={hexFlat(17, 26, 9)} c={accent} />
+    <Fl d={hexFlat(17, 50, 9)} />
+    <Fl d={hexFlat(17, 74, 9)} />
+    <Fl d="M35 21h55v10H35zM35 45h55v10H35zM35 69h38v10H35z" />
+  </Hexcut>
+);
+
+export const ActionShareLocationFilled = ({ accent = tokens.gold, ...p }: IconProps) => (
+  <Hexcut title="Bagikan lokasi" {...p}>
+    <Hl d={`M30 8h22l11 15v17L41 68 19 40V23L30 8Z${hexFlat(41, 29, 9)}`} />
+    <Ac d={hexFlat(41, 29, 5.5)} c={accent} />
+    <Hl d={`${hexFlat(72, 70, 20)}M69 56h6v16h-6ZM72 68l13 7-3 5-13-7Z`} />
+  </Hexcut>
+);
+
+export const ActionHandoverFilled = ({ accent = tokens.gold, ...p }: IconProps) => (
+  <Hexcut title="Serah terima" {...p}>
+    <Fl d={hexFlat(17, 38, 12)} />
+    <Fl d={hexFlat(83, 38, 12)} />
+    <Ac d={hexFlat(50, 38, 16)} c={accent} />
+    <Fl d="M28 71h30v-9l18 13-18 13v-9H28v-8Z" />
+  </Hexcut>
+);
+
 export const ActionMailFilled = ({ accent = tokens.goldLight, ...p }: IconProps) => (
   <Hexcut title="Email" {...p}>
     <Fl d={cut(9, 24, 82, 52, 9)} />

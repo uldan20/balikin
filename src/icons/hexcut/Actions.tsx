@@ -62,6 +62,42 @@ export const ActionBookmark = ({ accent = tokens.gold, ...p }: IconProps) => (
   </Hexcut>
 );
 
+export const ActionMore = ({ accent = tokens.gold, ...p }: IconProps) => (
+  <Hexcut title="Lainnya" {...p}>
+    <S d={hexFlat(20, 50, 10)} w={6.5} />
+    <A d={hexFlat(50, 50, 10)} fill={accent} />
+    <S d={hexFlat(80, 50, 10)} w={6.5} />
+  </Hexcut>
+);
+
+export const ActionList = ({ accent = tokens.gold, ...p }: IconProps) => (
+  <Hexcut title="Daftar" {...p}>
+    <A d={hexFlat(17, 26, 8)} fill={accent} />
+    <S d={hexFlat(17, 50, 8)} w={5.5} />
+    <S d={hexFlat(17, 74, 8)} w={5.5} />
+    <S d="M35 26h55M35 50h55M35 74h38" w={7} />
+  </Hexcut>
+);
+
+export const ActionShareLocation = ({ accent = tokens.gold, ...p }: IconProps) => (
+  <Hexcut title="Bagikan lokasi" {...p}>
+    <S d="M30 8h22l11 15v17L41 68 19 40V23L30 8Z" w={6.5} />
+    <A d={hexFlat(41, 29, 8)} fill={accent} />
+    <S d={hexFlat(72, 70, 20)} w={6} />
+    <S d="M72 70V58M72 70l11 6" w={5.5} />
+  </Hexcut>
+);
+
+export const ActionHandover = ({ accent = tokens.gold, ...p }: IconProps) => (
+  <Hexcut title="Serah terima" {...p}>
+    <S d={hexFlat(17, 38, 12)} w={6} />
+    <S d={hexFlat(83, 38, 12)} w={6} />
+    <A d={hexFlat(50, 38, 16)} fill={accent} />
+    <S d="M28 76h36" w={8} />
+    <S d="M56 66 72 76 56 86" w={8} />
+  </Hexcut>
+);
+
 export const ActionMail = ({ accent = tokens.gold, ...p }: IconProps) => (
   <Hexcut title="Email" {...p}>
     <S d={cut(9, 24, 82, 52, 9)} />

@@ -19,13 +19,13 @@ kisi heksagon yang sama dengan tile kategori, avatar, dan tombol tambah di app.
 `src/icons/hexcut/base.tsx` memuat aturan ini beserta pembantu geometri
 (`hexFlat`, `hexPointy`, `cut`, `star4`) supaya ikon baru tetap satu kisi.
 
-## Isi pustaka (86 ikon, dua varian)
+## Isi pustaka (90 ikon, dua varian)
 
 Dikelompokkan mengikuti rekap ikon aplikasi Balikin.
 
 | Kelompok | File | Komponen |
 | --- | --- | --- |
-| Navigasi & Sistem UI (17) | `System.tsx`, `Actions.tsx` | `SysSignal` `SysWifi` `SysWifiOff` `SysBattery` `ArrowUp` `ArrowForward` `ActionBack` `ArrowDownload` `ChevronDown` `ActionClose` `ActionRefresh` `ActionShare` `MapLayers` `NavArrow` `ActionNotification` `ActionBookmark` `ActionMail` |
+| Navigasi & Sistem UI (21) | `System.tsx`, `Actions.tsx` | `SysSignal` `SysWifi` `SysWifiOff` `SysBattery` `ArrowUp` `ArrowForward` `ActionBack` `ArrowDownload` `ChevronDown` `ActionClose` `ActionRefresh` `ActionShare` `MapLayers` `NavArrow` `ActionNotification` `ActionBookmark` `ActionMail` `ActionMore` `ActionList` `ActionShareLocation` `ActionHandover` |
 | Bottom Bar & Akses Cepat (8) | `Nav.tsx` | `NavHome` `NavExplore` `NavGrid` `NavAddPost` `ActionChat` `NavProfile` `NavReports` `NavHistory` |
 | Form, Media & Peta (15) | `Form.tsx` | `NavSearch` `ActionPlus` `FormCheckbox` `FormRadio` `FormToggle` `FormEye` `FormEyeOff` `ActionShutter` `ActionFlash` `ActionScan` `FormPin` `FormCalendar` `ActionCamera` `ActionLocation` `ActionFilter` |
 | Badge, Gamifikasi & Status (19) | `Status.tsx`, `Badges.tsx` | `StatusLost` `StatusFound` `StatusReturned` `StatusRejected` `StatusAlert` `VerifiedBadge` `VerifiedMini` `BadgeShield` `BadgeLock` `BadgeStar` `BadgeCrown` `BadgeEye` `BadgeScales` `RewardBadge` `RewardCoin` `ActionReputation` `ActionSparkle` `ActionTip` `ActionSettings` |
@@ -41,10 +41,29 @@ masing-masing supaya sah dan langsung dikenali pengguna. `PayBank`,
 `PayEwallet`, dan `ActionShare` dipakai untuk metode/tindakannya; logo resmi
 dipakai untuk kanalnya.
 
+### Filosofi bentuk
+
+Balikin sudah memakai heksagon sebagai wadah — tile kategori, avatar, tombol
+lapor. Ikon berbahasa bentuk lain akan terasa seperti tempelan dari pustaka
+orang lain, jadi seluruh ikon di sini dipotong dari kisi yang sama. Heksagon
+juga bentuk sarang lebah: struktur yang hanya berdiri kalau tiap sel bersandar
+pada sel di sebelahnya — metafora yang pas untuk aplikasi yang hidup dari orang
+asing yang mau repot mengembalikan barang milik orang lain.
+
+Enam prinsip yang dipakai, lengkap dengan peraganya, ada di bagian
+**Filosofi bentuk** pada `preview/pustaka-sudut-enam.html`:
+
+1. Setiap garis jatuh di kisi 60° (0°, 30°, 60°, 90°).
+2. Sudut dipangkas, tidak pernah dibulatkan.
+3. Satu titik emas per ikon.
+4. Garis untuk keadaan diam, padat untuk keadaan aktif.
+5. Detail dilubangi dengan `fill-rule="evenodd"`, bukan diwarnai latar.
+6. Dua pengecualian saja, dan berhenti di situ.
+
 ### Varian garis dan padat
 
 Setiap ikon punya pasangan padat dengan akhiran `Filled` (`Solid.tsx`) — total
-172 komponen. Padat untuk keadaan aktif atau terpilih, garis untuk keadaan
+180 komponen. Padat untuk keadaan aktif atau terpilih, garis untuk keadaan
 biasa:
 
 ```tsx
