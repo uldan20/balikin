@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="none" stroke-linejoin="miter" stroke-miterlimit="8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Penolong">
+<path d="M50 16L79.44 33L79.44 67L50 84L20.56 67L20.56 33Z" stroke="currentColor" stroke-width="7"/>
+<path d="M61 40L55.5 49.53L44.5 49.53L39 40L44.5 30.47L55.5 30.47Z" fill="#C8952E"/>
+<path d="M45 63L39.5 72.53L28.5 72.53L23 63L28.5 53.47L39.5 53.47Z" stroke="currentColor" stroke-width="5.5"/>
+<path d="M77 63L71.5 72.53L60.5 72.53L55 63L60.5 53.47L71.5 53.47Z" stroke="currentColor" stroke-width="5.5"/>
+</svg>

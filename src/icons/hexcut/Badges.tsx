@@ -83,3 +83,13 @@ export const StatusAlert = ({ accent = tokens.red, ...p }: IconProps) => (
     <path d={hexFlat(50, 68, 6)} fill={accent} />
   </Hexcut>
 );
+
+export const BadgeTrophy = ({ accent = tokens.gold, ...p }: IconProps) => (
+  <Hexcut title="Papan peringkat" {...p}>
+    <S d="M28 20H14v12l8 10h8" w={6} />
+    <S d="M72 20h14v12l-8 10h-8" w={6} />
+    <S d="M28 12h44v24l-9 16H37l-9-16V12Z" />
+    <S d="M50 52v16M32 84h36" w={6.5} />
+    <A d={hexFlat(50, 30, 9)} fill={accent} />
+  </Hexcut>
+);

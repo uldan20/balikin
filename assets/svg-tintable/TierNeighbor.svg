@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="none" stroke-linejoin="miter" stroke-miterlimit="8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tetangga Baik">
+<path d="M21 12H79L88 27.59V72.41L79 88H21L12 72.41V27.59Z" stroke="currentColor" stroke-width="6.5"/>
+<path d="M50 72 32 55V45l8-8h6l4 4 4-4h6l8 8v10L50 72Z" stroke="currentColor" stroke-width="6"/>
+<path d="M56 54L53 59.2L47 59.2L44 54L47 48.8L53 48.8Z" fill="#C8952E"/>
+</svg>

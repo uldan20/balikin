@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="none" stroke-linejoin="miter" stroke-miterlimit="8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Papan peringkat">
+<path d="M28 20H14v12l8 10h8M72 20h14v12l-8 10h-8" stroke="currentColor" stroke-width="6"/>
+<path d="M28 12h44v24l-9 16H37l-9-16V12ZM61 30L55.5 39.53L44.5 39.53L39 30L44.5 20.47L55.5 20.47Z" fill-rule="evenodd" clip-rule="evenodd" fill="currentColor"/>
+<path d="M57 30L53.5 36.06L46.5 36.06L43 30L46.5 23.94L53.5 23.94Z" fill="#C8952E"/>
+<path d="M46 50h8v20h-8zM30 78h40v10H30z" fill="currentColor"/>
+</svg>

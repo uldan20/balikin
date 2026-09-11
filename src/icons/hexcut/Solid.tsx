@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Hexcut, hexFlat, hexPointy, cut, star4, IconProps, tokens } from "./base";
+import { Hexcut, hexFlat, hexPointy, cut, star4, burst, IconProps, tokens } from "./base";
 
 /**
  * VARIAN PADAT (filled) untuk seluruh pustaka Sudut Enam.
@@ -560,6 +560,63 @@ export const ActionBookmarkFilled = ({ accent = tokens.gold, ...p }: IconProps) 
   <Hexcut title="Simpan" {...p}>
     <Hl d={`M26 18h48v64L50 68 26 82V18Z${hexFlat(50, 42, 9)}`} />
     <Ac d={hexFlat(50, 42, 5.5)} c={accent} />
+  </Hexcut>
+);
+
+export const BadgeTrophyFilled = ({ accent = tokens.gold, ...p }: IconProps) => (
+  <Hexcut title="Papan peringkat" {...p}>
+    <Ln d="M28 20H14v12l8 10h8M72 20h14v12l-8 10h-8" w={6} />
+    <Hl d={`M28 12h44v24l-9 16H37l-9-16V12Z${hexFlat(50, 30, 11)}`} />
+    <Ac d={hexFlat(50, 30, 7)} c={accent} />
+    <Fl d="M46 50h8v20h-8zM30 78h40v10H30z" />
+  </Hexcut>
+);
+
+export const ActionChartFilled = ({ accent = tokens.gold, ...p }: IconProps) => (
+  <Hexcut title="Riwayat & grafik" {...p}>
+    <Fl d="M13 13h9v70h-9zM13 74h72v9H13z" />
+    <Ln d="M32 63 46 46 58 57 76 34" w={8} />
+    <Ac d={hexFlat(78, 29, 9)} c={accent} />
+  </Hexcut>
+);
+
+export const ActionCheckFilled = (p: IconProps) => (
+  <Hexcut title="Selesai" {...p}>
+    <Fl d="M41 84 12 52l12-12 17 19 43-35 10 12-53 48Z" />
+  </Hexcut>
+);
+
+export const TierNewFilled = (p: IconProps) => (
+  <Hexcut title="Warga Baru" {...p}>
+    <Hl d={`${hexPointy(50, 50, 33)}${hexFlat(50, 50, 11)}`} />
+  </Hexcut>
+);
+
+export const TierNeighborFilled = ({ accent = tokens.gold, ...p }: IconProps) => (
+  <Hexcut title="Tetangga Baik" {...p}>
+    <Hl d={`${cut(12, 12, 76, 76, 9)}M50 72 32 55V45l8-8h6l4 4 4-4h6l8 8v10L50 72Z`} />
+    <Ac d={hexFlat(50, 52, 7)} c={accent} />
+  </Hexcut>
+);
+
+export const TierHelperFilled = ({ accent = tokens.gold, ...p }: IconProps) => (
+  <Hexcut title="Penolong" {...p}>
+    <Hl d={`${hexPointy(50, 50, 34)}${hexFlat(50, 40, 13)}${hexFlat(34, 63, 11)}${hexFlat(66, 63, 11)}`} />
+    <Ac d={hexFlat(50, 40, 9)} c={accent} />
+  </Hexcut>
+);
+
+export const TierGuardianFilled = ({ accent = tokens.gold, ...p }: IconProps) => (
+  <Hexcut title="Penjaga Kota" {...p}>
+    <Hl d={`M50 8 88 21v28L50 92 12 49V21L50 8Z${hexFlat(50, 42, 12)}${hexFlat(32, 55, 10)}${hexFlat(68, 55, 10)}`} />
+    <Ac d={hexFlat(50, 42, 8)} c={accent} />
+  </Hexcut>
+);
+
+export const TierLegendFilled = ({ accent = tokens.gold, ...p }: IconProps) => (
+  <Hexcut title="Legenda Balikin" {...p}>
+    <Hl d={`${burst(50, 50, 42, 28)}${star4(50, 50, 19)}`} />
+    <Ac d={star4(50, 50, 14)} c={accent} />
   </Hexcut>
 );
 

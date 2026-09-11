@@ -62,6 +62,22 @@ export const ActionBookmark = ({ accent = tokens.gold, ...p }: IconProps) => (
   </Hexcut>
 );
 
+/** Ceklis polos. Sengaja tanpa aksen emas: ia hampir selalu duduk di kotak
+ *  berwarna yang artinya sudah dibawa oleh warna kotak itu. */
+export const ActionChart = ({ accent = tokens.gold, ...p }: IconProps) => (
+  <Hexcut title="Riwayat & grafik" {...p}>
+    <S d="M17 13v70h68" />
+    <S d="M30 65 45 47 57 58 77 32" w={6.5} />
+    <A d={hexFlat(78, 29, 8)} fill={accent} />
+  </Hexcut>
+);
+
+export const ActionCheck = (p: IconProps) => (
+  <Hexcut title="Selesai" {...p}>
+    <S d="M18 52 41 78 84 24" w={9} />
+  </Hexcut>
+);
+
 export const ActionMore = ({ accent = tokens.gold, ...p }: IconProps) => (
   <Hexcut title="Lainnya" {...p}>
     <S d={hexFlat(20, 50, 10)} w={6.5} />

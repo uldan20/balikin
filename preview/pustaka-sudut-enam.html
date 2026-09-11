@@ -175,6 +175,23 @@
   .cat .tick { position: absolute; top: 7px; right: 8px; }
 
 
+  .tiers { display: grid; gap: 8px; margin-top: 14px; max-width: 620px; }
+  .tier {
+    display: flex; align-items: center; gap: 14px; padding: 12px 14px;
+    border-radius: 18px; color: var(--teal);
+  }
+  .tier.now { background: var(--teal-soft); }
+  .tier.off { color: var(--muted); }
+  .tmark { flex: none; display: grid; place-items: center; width: 46px; height: 46px; }
+  .ttxt { font-size: 12.5px; color: var(--meta); line-height: 1.4; }
+  .ttxt b { display: block; font-size: 15px; color: var(--ink); font-family: Gabarito, sans-serif; font-weight: 700; }
+  .tier.off .ttxt b { color: var(--muted); }
+  .tpn {
+    margin-left: auto; font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--meta);
+    background: var(--line-soft); border-radius: 999px; padding: 5px 11px; white-space: nowrap;
+  }
+  .tpn.on { background: #1B7A6E; color: #fff; letter-spacing: .08em; }
+
   .rows { display: grid; gap: 10px; margin-top: 14px; max-width: 620px; }
   .arow {
     display: flex; align-items: center; gap: 14px; background: var(--surface);
@@ -347,6 +364,18 @@ const hexPointy = (cx, cy, r) => {
 const cut = (x, y, w, h, c = 7) => {
   const v = n(c * 1.732);
   return `M${x + c} ${y}H${x + w - c}L${x + w} ${y + v}V${y + h - v}L${x + w - c} ${y + h}H${x + c}L${x} ${y + h - v}V${y + v}Z`;
+};
+
+/** Letusan 12 sudut. Titiknya jatuh tiap 30°, jadi bentuk "meriah" ini pun
+ *  masih duduk di kisi yang sama dengan seluruh pustaka. */
+const burst = (cx, cy, r1, r2) => {
+  const pts = [];
+  for (let i = 0; i < 12; i++) {
+    const a = (i * 30 - 90) * Math.PI / 180;
+    const r = i % 2 === 0 ? r1 : r2;
+    pts.push(`${n(cx + r * Math.cos(a))} ${n(cy + r * Math.sin(a))}`);
+  }
+  return `M${pts.join("L")}Z`;
 };
 
 /** Bintang empat sudut bersudut tajam — dipakai untuk apresiasi, poin, dan sorotan.
@@ -1266,6 +1295,26 @@ const StatusAlert = ({
   d: hexFlat(50, 68, 6),
   fill: accent
 }));
+const BadgeTrophy = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Papan peringkat"
+}, p), /*#__PURE__*/React.createElement(S, {
+  d: "M28 20H14v12l8 10h8",
+  w: 6
+}), /*#__PURE__*/React.createElement(S, {
+  d: "M72 20h14v12l-8 10h-8",
+  w: 6
+}), /*#__PURE__*/React.createElement(S, {
+  d: "M28 12h44v24l-9 16H37l-9-16V12Z"
+}), /*#__PURE__*/React.createElement(S, {
+  d: "M50 52v16M32 84h36",
+  w: 6.5
+}), /*#__PURE__*/React.createElement(A, {
+  d: hexFlat(50, 30, 9),
+  fill: accent
+}));
 /* Actions */
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 /* Kategori 4 — Fitur, Tindakan & Utilitas (plus ikon ekstra dari layar app) */
@@ -1380,6 +1429,29 @@ const ActionBookmark = ({
 }), /*#__PURE__*/React.createElement(A, {
   d: hexFlat(50, 42, 7),
   fill: accent
+}));
+
+/** Ceklis polos. Sengaja tanpa aksen emas: ia hampir selalu duduk di kotak
+ *  berwarna yang artinya sudah dibawa oleh warna kotak itu. */
+const ActionChart = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Riwayat & grafik"
+}, p), /*#__PURE__*/React.createElement(S, {
+  d: "M17 13v70h68"
+}), /*#__PURE__*/React.createElement(S, {
+  d: "M30 65 45 47 57 58 77 32",
+  w: 6.5
+}), /*#__PURE__*/React.createElement(A, {
+  d: hexFlat(78, 29, 8),
+  fill: accent
+}));
+const ActionCheck = p => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Selesai"
+}, p), /*#__PURE__*/React.createElement(S, {
+  d: "M18 52 41 78 84 24",
+  w: 9
 }));
 const ActionMore = ({
   accent = tokens.gold,
@@ -1770,6 +1842,113 @@ const achievementBadges = [{
   id: "AchLegend",
   label: "Legenda",
   Icon: AchLegend
+}];
+/* Tiers */
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * TINGKAT KOMUNITAS
+ *
+ * Lima tingkat, dan yang naik bukan hanya isinya — wadahnya ikut naik:
+ * heksagon terputus → kotak → heksagon utuh → perisai → letusan. Jadi di daftar
+ * yang panjang, urutan tingkat terbaca dari siluetnya saja, bahkan sebelum
+ * angkanya dibaca. Varian garis untuk tingkat yang belum diraih, varian padat
+ * untuk yang sudah.
+ */
+
+const TierNew = p => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Warga Baru"
+}, p), /*#__PURE__*/React.createElement("path", {
+  d: hexPointy(50, 50, 33),
+  stroke: "currentColor",
+  strokeWidth: 6.5,
+  strokeDasharray: "9 8",
+  strokeOpacity: 0.55
+}), /*#__PURE__*/React.createElement(S, {
+  d: hexFlat(50, 50, 8),
+  w: 5.5,
+  o: 0.45
+}));
+const TierNeighbor = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Tetangga Baik"
+}, p), /*#__PURE__*/React.createElement(S, {
+  d: cut(12, 12, 76, 76, 9),
+  w: 6.5
+}), /*#__PURE__*/React.createElement(S, {
+  d: "M50 72 32 55V45l8-8h6l4 4 4-4h6l8 8v10L50 72Z",
+  w: 6
+}), /*#__PURE__*/React.createElement(A, {
+  d: hexFlat(50, 54, 6),
+  fill: accent
+}));
+const TierHelper = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Penolong"
+}, p), /*#__PURE__*/React.createElement(S, {
+  d: hexPointy(50, 50, 34)
+}), /*#__PURE__*/React.createElement(A, {
+  d: hexFlat(50, 40, 11),
+  fill: accent
+}), /*#__PURE__*/React.createElement(S, {
+  d: hexFlat(34, 63, 11),
+  w: 5.5
+}), /*#__PURE__*/React.createElement(S, {
+  d: hexFlat(66, 63, 11),
+  w: 5.5
+}));
+const TierGuardian = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Penjaga Kota"
+}, p), /*#__PURE__*/React.createElement(S, {
+  d: "M50 8 88 21v28L50 92 12 49V21L50 8Z"
+}), /*#__PURE__*/React.createElement(A, {
+  d: hexFlat(50, 42, 10),
+  fill: accent
+}), /*#__PURE__*/React.createElement(S, {
+  d: hexFlat(32, 55, 10),
+  w: 5.5
+}), /*#__PURE__*/React.createElement(S, {
+  d: hexFlat(68, 55, 10),
+  w: 5.5
+}));
+const TierLegend = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Legenda Balikin"
+}, p), /*#__PURE__*/React.createElement(S, {
+  d: burst(50, 50, 42, 28),
+  w: 6.5
+}), /*#__PURE__*/React.createElement(A, {
+  d: star4(50, 50, 17),
+  fill: accent
+}));
+const communityTiers = [{
+  id: "TierNew",
+  label: "Warga Baru",
+  poin: "0 PN"
+}, {
+  id: "TierNeighbor",
+  label: "Tetangga Baik",
+  poin: "100 PN"
+}, {
+  id: "TierHelper",
+  label: "Penolong",
+  poin: "400 PN"
+}, {
+  id: "TierGuardian",
+  label: "Penjaga Kota",
+  poin: "1.000 PN"
+}, {
+  id: "TierLegend",
+  label: "Legenda Balikin",
+  poin: "2.500 PN"
 }];
 /* Solid */
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
@@ -2650,6 +2829,90 @@ const ActionBookmarkFilled = ({
   d: hexFlat(50, 42, 5.5),
   c: accent
 }));
+const BadgeTrophyFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Papan peringkat"
+}, p), /*#__PURE__*/React.createElement(Ln, {
+  d: "M28 20H14v12l8 10h8M72 20h14v12l-8 10h-8",
+  w: 6
+}), /*#__PURE__*/React.createElement(Hl, {
+  d: `M28 12h44v24l-9 16H37l-9-16V12Z${hexFlat(50, 30, 11)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 30, 7),
+  c: accent
+}), /*#__PURE__*/React.createElement(Fl, {
+  d: "M46 50h8v20h-8zM30 78h40v10H30z"
+}));
+const ActionChartFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Riwayat & grafik"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M13 13h9v70h-9zM13 74h72v9H13z"
+}), /*#__PURE__*/React.createElement(Ln, {
+  d: "M32 63 46 46 58 57 76 34",
+  w: 8
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(78, 29, 9),
+  c: accent
+}));
+const ActionCheckFilled = p => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Selesai"
+}, p), /*#__PURE__*/React.createElement(Fl, {
+  d: "M41 84 12 52l12-12 17 19 43-35 10 12-53 48Z"
+}));
+const TierNewFilled = p => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Warga Baru"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `${hexPointy(50, 50, 33)}${hexFlat(50, 50, 11)}`
+}));
+const TierNeighborFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Tetangga Baik"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `${cut(12, 12, 76, 76, 9)}M50 72 32 55V45l8-8h6l4 4 4-4h6l8 8v10L50 72Z`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 52, 7),
+  c: accent
+}));
+const TierHelperFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Penolong"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `${hexPointy(50, 50, 34)}${hexFlat(50, 40, 13)}${hexFlat(34, 63, 11)}${hexFlat(66, 63, 11)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 40, 9),
+  c: accent
+}));
+const TierGuardianFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Penjaga Kota"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `M50 8 88 21v28L50 92 12 49V21L50 8Z${hexFlat(50, 42, 12)}${hexFlat(32, 55, 10)}${hexFlat(68, 55, 10)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: hexFlat(50, 42, 8),
+  c: accent
+}));
+const TierLegendFilled = ({
+  accent = tokens.gold,
+  ...p
+}) => /*#__PURE__*/React.createElement(Hexcut, _extends({
+  title: "Legenda Balikin"
+}, p), /*#__PURE__*/React.createElement(Hl, {
+  d: `${burst(50, 50, 42, 28)}${star4(50, 50, 19)}`
+}), /*#__PURE__*/React.createElement(Ac, {
+  d: star4(50, 50, 14),
+  c: accent
+}));
 const ActionMoreFilled = ({
   accent = tokens.gold,
   ...p
@@ -2999,6 +3262,7 @@ const all = {
   ActionSettings,
   RewardCoin,
   StatusAlert,
+  BadgeTrophy,
   ActionFilter,
   ActionNotification,
   ActionChat,
@@ -3006,6 +3270,8 @@ const all = {
   ActionShare,
   ActionCamera,
   ActionBookmark,
+  ActionChart,
+  ActionCheck,
   ActionMore,
   ActionList,
   ActionShareLocation,
@@ -3030,6 +3296,12 @@ const all = {
   AchMover,
   AchLegend,
   achievementBadges,
+  TierNew,
+  TierNeighbor,
+  TierHelper,
+  TierGuardian,
+  TierLegend,
+  communityTiers,
   SysSignalFilled,
   SysWifiFilled,
   SysWifiOffFilled,
@@ -3097,6 +3369,14 @@ const all = {
   ActionShareFilled,
   ActionCameraFilled,
   ActionBookmarkFilled,
+  BadgeTrophyFilled,
+  ActionChartFilled,
+  ActionCheckFilled,
+  TierNewFilled,
+  TierNeighborFilled,
+  TierHelperFilled,
+  TierGuardianFilled,
+  TierLegendFilled,
   ActionMoreFilled,
   ActionListFilled,
   ActionShareLocationFilled,
@@ -3131,7 +3411,7 @@ const g = (group, rows) => ({
 });
 
 /** Pustaka lengkap, dikelompokkan mengikuti rekap ikon aplikasi Balikin. */
-const balikinIcons = [g("Navigasi & Sistem UI", [["SysSignal", "Sinyal"], ["SysWifi", "Wi-Fi"], ["SysWifiOff", "Wi-Fi terputus"], ["SysBattery", "Baterai"], ["ArrowUp", "Ke atas"], ["ArrowForward", "Lanjut"], ["ActionBack", "Kembali"], ["ArrowDownload", "Unduh"], ["ChevronDown", "Buka"], ["ActionClose", "Tutup"], ["ActionRefresh", "Muat ulang"], ["ActionShare", "Bagikan"], ["MapLayers", "Layer peta"], ["NavArrow", "Penunjuk arah"], ["ActionNotification", "Notifikasi"], ["ActionBookmark", "Simpan"], ["ActionMail", "Email"], ["ActionMore", "Lainnya"], ["ActionList", "Daftar"], ["ActionShareLocation", "Bagikan lokasi"], ["ActionHandover", "Serah terima"]]), g("Bottom Bar & Akses Cepat", [["NavHome", "Beranda"], ["NavExplore", "Jelajah"], ["NavGrid", "Semua menu"], ["NavAddPost", "Lapor"], ["ActionChat", "Chat"], ["NavProfile", "Profil"], ["NavReports", "Laporan saya"], ["NavHistory", "Riwayat"]]), g("Form, Media & Peta", [["NavSearch", "Cari"], ["ActionPlus", "Tambah"], ["FormCheckbox", "Kotak centang"], ["FormRadio", "Pilihan tunggal"], ["FormToggle", "Sakelar"], ["FormEye", "Tampilkan"], ["FormEyeOff", "Sembunyikan"], ["ActionShutter", "Ambil foto"], ["ActionFlash", "Flash"], ["ActionScan", "Pindai"], ["FormPin", "Titik lokasi"], ["FormCalendar", "Kalender"], ["ActionCamera", "Kamera"], ["ActionLocation", "Peta"], ["ActionFilter", "Filter"]]), g("Badge, Gamifikasi & Status", [["StatusLost", "Hilang"], ["StatusFound", "Ditemukan"], ["StatusReturned", "Sudah kembali"], ["StatusRejected", "Ditolak"], ["StatusAlert", "Perhatian"], ["VerifiedBadge", "Terverifikasi"], ["VerifiedMini", "Terverifikasi padat"], ["BadgeShield", "Terlindungi"], ["BadgeLock", "Terkunci"], ["BadgeStar", "Rating"], ["BadgeCrown", "Mahkota"], ["BadgeEye", "Mata elang"], ["BadgeScales", "Adil"], ["RewardBadge", "Apresiasi"], ["RewardCoin", "Poin"], ["ActionReputation", "Reputasi"], ["ActionSparkle", "Sorotan AI"], ["ActionTip", "Tip"], ["ActionSettings", "Pengaturan"]]), g("Keuangan, Tip & Bagikan", [["PayQr", "QRIS"], ["PayBank", "Bank"], ["PayEwallet", "E-wallet"], ["PayCard", "Kartu ATM"], ["ActionCopyLink", "Salin tautan"]]), g("Lencana Pencapaian", [["AchFirstReturn", "Balik Pertama"], ["AchTenItems", "10 Barang"], ["AchFastReply", "Balas Cepat"], ["AchEagleEye", "Mata Elang"], ["AchDocs", "Dokumen"], ["AchNightWatch", "Jaga Malam"], ["AchZeroDispute", "Nol Sengketa"], ["AchMover", "Penggerak"], ["AchLegend", "Legenda"]]), g("Kategori Barang", [["ItemBagWallet", "Tas & Dompet"], ["ItemBag", "Tas"], ["ItemWallet", "Dompet"], ["ItemKeys", "Kunci"], ["ItemElectronics", "HP & Elektronik"], ["ItemDocuments", "Dokumen"], ["ItemIdCard", "Kartu identitas"], ["ItemGlasses", "Kacamata"], ["ItemUmbrella", "Payung"], ["ItemTumbler", "Tumbler"], ["ItemPets", "Hewan"], ["ItemJewelry", "Perhiasan"], ["ItemOthers", "Lainnya"]])];
+const balikinIcons = [g("Navigasi & Sistem UI", [["SysSignal", "Sinyal"], ["SysWifi", "Wi-Fi"], ["SysWifiOff", "Wi-Fi terputus"], ["SysBattery", "Baterai"], ["ArrowUp", "Ke atas"], ["ArrowForward", "Lanjut"], ["ActionBack", "Kembali"], ["ArrowDownload", "Unduh"], ["ChevronDown", "Buka"], ["ActionClose", "Tutup"], ["ActionRefresh", "Muat ulang"], ["ActionShare", "Bagikan"], ["MapLayers", "Layer peta"], ["NavArrow", "Penunjuk arah"], ["ActionNotification", "Notifikasi"], ["ActionBookmark", "Simpan"], ["ActionMail", "Email"], ["ActionChart", "Riwayat & grafik"], ["ActionCheck", "Selesai"], ["ActionMore", "Lainnya"], ["ActionList", "Daftar"], ["ActionShareLocation", "Bagikan lokasi"], ["ActionHandover", "Serah terima"]]), g("Bottom Bar & Akses Cepat", [["NavHome", "Beranda"], ["NavExplore", "Jelajah"], ["NavGrid", "Semua menu"], ["NavAddPost", "Lapor"], ["ActionChat", "Chat"], ["NavProfile", "Profil"], ["NavReports", "Laporan saya"], ["NavHistory", "Riwayat"]]), g("Form, Media & Peta", [["NavSearch", "Cari"], ["ActionPlus", "Tambah"], ["FormCheckbox", "Kotak centang"], ["FormRadio", "Pilihan tunggal"], ["FormToggle", "Sakelar"], ["FormEye", "Tampilkan"], ["FormEyeOff", "Sembunyikan"], ["ActionShutter", "Ambil foto"], ["ActionFlash", "Flash"], ["ActionScan", "Pindai"], ["FormPin", "Titik lokasi"], ["FormCalendar", "Kalender"], ["ActionCamera", "Kamera"], ["ActionLocation", "Peta"], ["ActionFilter", "Filter"]]), g("Badge, Gamifikasi & Status", [["StatusLost", "Hilang"], ["StatusFound", "Ditemukan"], ["StatusReturned", "Sudah kembali"], ["StatusRejected", "Ditolak"], ["StatusAlert", "Perhatian"], ["VerifiedBadge", "Terverifikasi"], ["VerifiedMini", "Terverifikasi padat"], ["BadgeShield", "Terlindungi"], ["BadgeLock", "Terkunci"], ["BadgeStar", "Rating"], ["BadgeCrown", "Mahkota"], ["BadgeEye", "Mata elang"], ["BadgeScales", "Adil"], ["BadgeTrophy", "Papan peringkat"], ["RewardBadge", "Apresiasi"], ["RewardCoin", "Poin"], ["ActionReputation", "Reputasi"], ["ActionSparkle", "Sorotan AI"], ["ActionTip", "Tip"], ["ActionSettings", "Pengaturan"]]), g("Keuangan, Tip & Bagikan", [["PayQr", "QRIS"], ["PayBank", "Bank"], ["PayEwallet", "E-wallet"], ["PayCard", "Kartu ATM"], ["ActionCopyLink", "Salin tautan"]]), g("Tingkat Komunitas", [["TierNew", "Warga Baru"], ["TierNeighbor", "Tetangga Baik"], ["TierHelper", "Penolong"], ["TierGuardian", "Penjaga Kota"], ["TierLegend", "Legenda Balikin"]]), g("Lencana Pencapaian", [["AchFirstReturn", "Balik Pertama"], ["AchTenItems", "10 Barang"], ["AchFastReply", "Balas Cepat"], ["AchEagleEye", "Mata Elang"], ["AchDocs", "Dokumen"], ["AchNightWatch", "Jaga Malam"], ["AchZeroDispute", "Nol Sengketa"], ["AchMover", "Penggerak"], ["AchLegend", "Legenda"]]), g("Kategori Barang", [["ItemBagWallet", "Tas & Dompet"], ["ItemBag", "Tas"], ["ItemWallet", "Dompet"], ["ItemKeys", "Kunci"], ["ItemElectronics", "HP & Elektronik"], ["ItemDocuments", "Dokumen"], ["ItemIdCard", "Kartu identitas"], ["ItemGlasses", "Kacamata"], ["ItemUmbrella", "Payung"], ["ItemTumbler", "Tumbler"], ["ItemPets", "Hewan"], ["ItemJewelry", "Perhiasan"], ["ItemOthers", "Lainnya"]])];
 
 /** Registry yang sama, tetapi memakai varian padat (filled) tiap ikon. */
 const balikinIconsFilled = balikinIcons.map(g => ({
@@ -3157,6 +3437,13 @@ const Hex = ({
   d: "M42.2 7.5Q50 3 57.8 7.5L82.7 22Q90.5 26.5 90.5 35.5v29Q90.5 73.5 82.7 78L57.8 92.5Q50 97 42.2 92.5L17.3 78Q9.5 73.5 9.5 64.5v-29Q9.5 26.5 17.3 22Z",
   fill: fill
 }));
+const TIER_NOTE = {
+  TierNew: "Mulai berkontribusi di komunitas.",
+  TierNeighbor: "Mulai dipercaya oleh komunitas.",
+  TierHelper: "Aktif membantu pengembalian barang.",
+  TierGuardian: "Dipercaya dalam proses pengembalian.",
+  TierLegend: "Jadi teladan komunitas."
+};
 const BY_ID = Object.fromEntries([...balikinIcons, ...balikinIconsFilled].flatMap(g => g.items.map(i => [i.id, i.Icon])));
 function App() {
   const [solid, setSolid] = React.useState(false);
@@ -3362,6 +3649,30 @@ function App() {
     }, /*#__PURE__*/React.createElement(ChevronDown, {
       size: 16
     })));
+  })), /*#__PURE__*/React.createElement("h2", null, "Tangga tingkat komunitas"), /*#__PURE__*/React.createElement("p", {
+    className: "section-note"
+  }, "Wadahnya ikut naik bersama tingkatnya \u2014 heksagon terputus, kotak, heksagon utuh, perisai, letusan \u2014 jadi urutannya terbaca dari siluet saja. Garis untuk yang belum diraih, padat untuk yang sudah."), /*#__PURE__*/React.createElement("div", {
+    className: "tiers"
+  }, communityTiers.map(({
+    id,
+    label,
+    poin
+  }, i) => {
+    const done = i <= 2;
+    const now = i === 2;
+    const Icon = done ? BY_ID[`${id}Filled`] : BY_ID[id];
+    return /*#__PURE__*/React.createElement("div", {
+      className: now ? "tier now" : done ? "tier" : "tier off",
+      key: id
+    }, /*#__PURE__*/React.createElement("span", {
+      className: "tmark"
+    }, /*#__PURE__*/React.createElement(Icon, {
+      size: 38
+    })), /*#__PURE__*/React.createElement("span", {
+      className: "ttxt"
+    }, /*#__PURE__*/React.createElement("b", null, label), TIER_NOTE[id]), /*#__PURE__*/React.createElement("span", {
+      className: now ? "tpn on" : "tpn"
+    }, now ? "SEKARANG" : poin));
   })), /*#__PURE__*/React.createElement("h2", null, "Lencana di layar pencapaian"), /*#__PURE__*/React.createElement("p", {
     className: "section-note"
   }, "Lencana selalu tampil di dalam wadah heksagon: teal saat terbuka, abu saat terkunci. Garisnya dibuat lebih tebal daripada ikon UI supaya tetap terbaca pada \xB126 px."), /*#__PURE__*/React.createElement("div", {

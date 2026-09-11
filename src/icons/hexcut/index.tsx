@@ -8,6 +8,7 @@ export * from "./Badges";
 export * from "./Actions";
 export * from "./Pay";
 export * from "./Achievements";
+export * from "./Tiers";
 export * from "./Solid";
 
 import * as Sys from "./System";
@@ -19,9 +20,10 @@ import * as Badges from "./Badges";
 import * as Actions from "./Actions";
 import * as Pay from "./Pay";
 import * as Ach from "./Achievements";
+import * as Tiers from "./Tiers";
 import * as Solid from "./Solid";
 
-const all: Record<string, any> = { ...Sys, ...Nav, ...Form, ...Items, ...Status, ...Badges, ...Actions, ...Pay, ...Ach, ...Solid };
+const all: Record<string, any> = { ...Sys, ...Nav, ...Form, ...Items, ...Status, ...Badges, ...Actions, ...Pay, ...Ach, ...Tiers, ...Solid };
 
 const g = (group: string, rows: [string, string][]) => ({
   group,
@@ -37,7 +39,7 @@ export const balikinIcons = [
     ["ActionClose", "Tutup"], ["ActionRefresh", "Muat ulang"], ["ActionShare", "Bagikan"],
     ["MapLayers", "Layer peta"], ["NavArrow", "Penunjuk arah"],
     ["ActionNotification", "Notifikasi"], ["ActionBookmark", "Simpan"],
-    ["ActionMail", "Email"], ["ActionMore", "Lainnya"], ["ActionList", "Daftar"],
+    ["ActionMail", "Email"], ["ActionChart", "Riwayat & grafik"], ["ActionCheck", "Selesai"], ["ActionMore", "Lainnya"], ["ActionList", "Daftar"],
     ["ActionShareLocation", "Bagikan lokasi"], ["ActionHandover", "Serah terima"],
   ]),
   g("Bottom Bar & Akses Cepat", [
@@ -57,13 +59,18 @@ export const balikinIcons = [
     ["StatusRejected", "Ditolak"], ["StatusAlert", "Perhatian"], ["VerifiedBadge", "Terverifikasi"],
     ["VerifiedMini", "Terverifikasi padat"], ["BadgeShield", "Terlindungi"], ["BadgeLock", "Terkunci"],
     ["BadgeStar", "Rating"], ["BadgeCrown", "Mahkota"], ["BadgeEye", "Mata elang"],
-    ["BadgeScales", "Adil"], ["RewardBadge", "Apresiasi"], ["RewardCoin", "Poin"],
+    ["BadgeScales", "Adil"], ["BadgeTrophy", "Papan peringkat"], ["RewardBadge", "Apresiasi"], ["RewardCoin", "Poin"],
     ["ActionReputation", "Reputasi"], ["ActionSparkle", "Sorotan AI"], ["ActionTip", "Tip"],
     ["ActionSettings", "Pengaturan"],
   ]),
   g("Keuangan, Tip & Bagikan", [
     ["PayQr", "QRIS"], ["PayBank", "Bank"], ["PayEwallet", "E-wallet"],
     ["PayCard", "Kartu ATM"], ["ActionCopyLink", "Salin tautan"],
+  ]),
+  g("Tingkat Komunitas", [
+    ["TierNew", "Warga Baru"], ["TierNeighbor", "Tetangga Baik"],
+    ["TierHelper", "Penolong"], ["TierGuardian", "Penjaga Kota"],
+    ["TierLegend", "Legenda Balikin"],
   ]),
   g("Lencana Pencapaian", [
     ["AchFirstReturn", "Balik Pertama"], ["AchTenItems", "10 Barang"],

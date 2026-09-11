@@ -54,6 +54,18 @@ export const cut = (x: number, y: number, w: number, h: number, c = 7) => {
   return `M${x + c} ${y}H${x + w - c}L${x + w} ${y + v}V${y + h - v}L${x + w - c} ${y + h}H${x + c}L${x} ${y + h - v}V${y + v}Z`;
 };
 
+/** Letusan 12 sudut. Titiknya jatuh tiap 30°, jadi bentuk "meriah" ini pun
+ *  masih duduk di kisi yang sama dengan seluruh pustaka. */
+export const burst = (cx: number, cy: number, r1: number, r2: number) => {
+  const pts: string[] = [];
+  for (let i = 0; i < 12; i++) {
+    const a = ((i * 30 - 90) * Math.PI) / 180;
+    const r = i % 2 === 0 ? r1 : r2;
+    pts.push(`${n(cx + r * Math.cos(a))} ${n(cy + r * Math.sin(a))}`);
+  }
+  return `M${pts.join("L")}Z`;
+};
+
 /** Bintang empat sudut bersudut tajam — dipakai untuk apresiasi, poin, dan sorotan.
  *  Sengaja BUKAN bintang enam: dua segitiga yang saling tumpuk membentuk
  *  Star of David, simbol religius yang tidak diinginkan di konteks ini. */

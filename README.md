@@ -19,17 +19,18 @@ kisi heksagon yang sama dengan tile kategori, avatar, dan tombol tambah di app.
 `src/icons/hexcut/base.tsx` memuat aturan ini beserta pembantu geometri
 (`hexFlat`, `hexPointy`, `cut`, `star4`) supaya ikon baru tetap satu kisi.
 
-## Isi pustaka (90 ikon, dua varian)
+## Isi pustaka (98 ikon, dua varian)
 
 Dikelompokkan mengikuti rekap ikon aplikasi Balikin.
 
 | Kelompok | File | Komponen |
 | --- | --- | --- |
-| Navigasi & Sistem UI (21) | `System.tsx`, `Actions.tsx` | `SysSignal` `SysWifi` `SysWifiOff` `SysBattery` `ArrowUp` `ArrowForward` `ActionBack` `ArrowDownload` `ChevronDown` `ActionClose` `ActionRefresh` `ActionShare` `MapLayers` `NavArrow` `ActionNotification` `ActionBookmark` `ActionMail` `ActionMore` `ActionList` `ActionShareLocation` `ActionHandover` |
+| Navigasi & Sistem UI (23) | `System.tsx`, `Actions.tsx` | `SysSignal` `SysWifi` `SysWifiOff` `SysBattery` `ArrowUp` `ArrowForward` `ActionBack` `ArrowDownload` `ChevronDown` `ActionClose` `ActionRefresh` `ActionShare` `MapLayers` `NavArrow` `ActionNotification` `ActionBookmark` `ActionMail` `ActionMore` `ActionList` `ActionShareLocation` `ActionHandover` `ActionChart` `ActionCheck` |
 | Bottom Bar & Akses Cepat (8) | `Nav.tsx` | `NavHome` `NavExplore` `NavGrid` `NavAddPost` `ActionChat` `NavProfile` `NavReports` `NavHistory` |
 | Form, Media & Peta (15) | `Form.tsx` | `NavSearch` `ActionPlus` `FormCheckbox` `FormRadio` `FormToggle` `FormEye` `FormEyeOff` `ActionShutter` `ActionFlash` `ActionScan` `FormPin` `FormCalendar` `ActionCamera` `ActionLocation` `ActionFilter` |
-| Badge, Gamifikasi & Status (19) | `Status.tsx`, `Badges.tsx` | `StatusLost` `StatusFound` `StatusReturned` `StatusRejected` `StatusAlert` `VerifiedBadge` `VerifiedMini` `BadgeShield` `BadgeLock` `BadgeStar` `BadgeCrown` `BadgeEye` `BadgeScales` `RewardBadge` `RewardCoin` `ActionReputation` `ActionSparkle` `ActionTip` `ActionSettings` |
+| Badge, Gamifikasi & Status (20) | `Status.tsx`, `Badges.tsx` | `BadgeTrophy` `StatusLost` `StatusFound` `StatusReturned` `StatusRejected` `StatusAlert` `VerifiedBadge` `VerifiedMini` `BadgeShield` `BadgeLock` `BadgeStar` `BadgeCrown` `BadgeEye` `BadgeScales` `RewardBadge` `RewardCoin` `ActionReputation` `ActionSparkle` `ActionTip` `ActionSettings` |
 | Keuangan, Tip & Bagikan (5) | `Pay.tsx` | `PayQr` `PayBank` `PayEwallet` `PayCard` `ActionCopyLink` |
+| Tingkat Komunitas (5) | `Tiers.tsx` | `TierNew` `TierNeighbor` `TierHelper` `TierGuardian` `TierLegend` |
 | Lencana Pencapaian (9) | `Achievements.tsx` | `AchFirstReturn` `AchTenItems` `AchFastReply` `AchEagleEye` `AchDocs` `AchNightWatch` `AchZeroDispute` `AchMover` `AchLegend` |
 | Kategori Barang (13) | `Items.tsx` | `ItemBagWallet` `ItemBag` `ItemWallet` `ItemKeys` `ItemElectronics` `ItemDocuments` `ItemIdCard` `ItemGlasses` `ItemUmbrella` `ItemTumbler` `ItemPets` `ItemJewelry` `ItemOthers` |
 
@@ -63,7 +64,7 @@ Enam prinsip yang dipakai, lengkap dengan peraganya, ada di bagian
 ### Varian garis dan padat
 
 Setiap ikon punya pasangan padat dengan akhiran `Filled` (`Solid.tsx`) — total
-180 komponen. Padat untuk keadaan aktif atau terpilih, garis untuk keadaan
+196 komponen. Padat untuk keadaan aktif atau terpilih, garis untuk keadaan
 biasa:
 
 ```tsx
@@ -79,6 +80,22 @@ supaya keduanya bertukar tanpa terasa bergeser; detail di dalam badan
 jadi ikon tetap benar di atas latar apa pun; tali, gagang, dan penghubung tetap
 berupa garis karena dipadatkan justru menggumpal di ukuran kecil.
 `balikinIconsFilled` adalah registry versi padatnya.
+
+### Tingkat komunitas
+
+Lima tingkat di `Tiers.tsx` naik bukan hanya pada isinya — **wadahnya ikut
+naik**: heksagon terputus → kotak → heksagon utuh → perisai → letusan 12 sudut.
+Di daftar yang panjang, urutan tingkat jadi terbaca dari siluetnya saja, bahkan
+sebelum angka poinnya dibaca. Varian garis untuk tingkat yang belum diraih,
+varian padat untuk yang sudah:
+
+```tsx
+<TierHelper size={38} />        // belum diraih
+<TierHelperFilled size={38} />  // sudah diraih
+```
+
+Letusan `TierLegend` memakai pembantu `burst()` yang titiknya jatuh tiap 30°,
+jadi bentuk paling meriah di pustaka ini pun masih duduk di kisi yang sama.
 
 ### Lencana pencapaian
 

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="none" stroke-linejoin="miter" stroke-miterlimit="8" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Legenda Balikin">
+<path d="M50 8L64 25.75L86.37 29L78 50L86.37 71L64 74.25L50 92L36 74.25L13.63 71L22 50L13.63 29L36 25.75Z" stroke="currentColor" stroke-width="6.5"/>
+<path d="M50 33L55.1 44.9L67 50L55.1 55.1L50 67L44.9 55.1L33 50L44.9 44.9Z" fill="#C8952E"/>
+</svg>
