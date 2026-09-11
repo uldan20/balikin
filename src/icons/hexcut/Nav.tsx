@@ -61,11 +61,12 @@ export const NavGrid = ({ accent = tokens.gold, ...p }: IconProps) => (
   </Hexcut>
 );
 
+/** Map polos berlabel heksagon emas. Dibedakan dari ItemDocuments — yang
+ *  bermakna dokumen sebagai barang hilang — lewat muka map yang bersih:
+ *  di sana ada garis kertas dan jepitan, di sini tidak. */
 export const NavReports = ({ accent = tokens.gold, ...p }: IconProps) => (
   <Hexcut title="Laporan saya" {...p}>
-    <S d="M38 12h24v16H38z" w={6.5} />
-    <S d={cut(16, 20, 68, 70, 9)} />
-    <S d="M32 52h36M32 68h24" w={5.5} o={0.32} />
-    <A d={hexFlat(74, 74, 8)} fill={accent} />
+    <S d="M11 26h26l8 12h36l8 12v28l-8 8H19l-8-8V26Z" />
+    <A d={hexFlat(50, 62, 10)} fill={accent} />
   </Hexcut>
 );

@@ -176,9 +176,8 @@ export const NavGridFilled = ({ accent = tokens.gold, ...p }: IconProps) => (
 
 export const NavReportsFilled = ({ accent = tokens.gold, ...p }: IconProps) => (
   <Hexcut title="Laporan saya" {...p}>
-    <Hl d={`${cut(16, 20, 68, 70, 9)}M32 48h36v8H32ZM32 64h24v8H32Z`} />
-    <Fl d="M37 11h26v17H37z" />
-    <Ac d={hexFlat(50, 34, 6)} c={accent} />
+    <Hl d={`M11 26h26l8 12h36l8 12v28l-8 8H19l-8-8V26Z${hexFlat(50, 62, 13)}`} />
+    <Ac d={hexFlat(50, 62, 9)} c={accent} />
   </Hexcut>
 );
 

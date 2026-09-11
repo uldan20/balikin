@@ -678,22 +678,19 @@ const NavGrid = ({
   d: cut(55, 55, 33, 33, 6),
   fill: accent
 }));
+
+/** Map polos berlabel heksagon emas. Dibedakan dari ItemDocuments — yang
+ *  bermakna dokumen sebagai barang hilang — lewat muka map yang bersih:
+ *  di sana ada garis kertas dan jepitan, di sini tidak. */
 const NavReports = ({
   accent = tokens.gold,
   ...p
 }) => /*#__PURE__*/React.createElement(Hexcut, _extends({
   title: "Laporan saya"
 }, p), /*#__PURE__*/React.createElement(S, {
-  d: "M38 12h24v16H38z",
-  w: 6.5
-}), /*#__PURE__*/React.createElement(S, {
-  d: cut(16, 20, 68, 70, 9)
-}), /*#__PURE__*/React.createElement(S, {
-  d: "M32 52h36M32 68h24",
-  w: 5.5,
-  o: 0.32
+  d: "M11 26h26l8 12h36l8 12v28l-8 8H19l-8-8V26Z"
 }), /*#__PURE__*/React.createElement(A, {
-  d: hexFlat(74, 74, 8),
+  d: hexFlat(50, 62, 10),
   fill: accent
 }));
 /* Form */
@@ -2227,11 +2224,9 @@ const NavReportsFilled = ({
 }) => /*#__PURE__*/React.createElement(Hexcut, _extends({
   title: "Laporan saya"
 }, p), /*#__PURE__*/React.createElement(Hl, {
-  d: `${cut(16, 20, 68, 70, 9)}M32 48h36v8H32ZM32 64h24v8H32Z`
-}), /*#__PURE__*/React.createElement(Fl, {
-  d: "M37 11h26v17H37z"
+  d: `M11 26h26l8 12h36l8 12v28l-8 8H19l-8-8V26Z${hexFlat(50, 62, 13)}`
 }), /*#__PURE__*/React.createElement(Ac, {
-  d: hexFlat(50, 34, 6),
+  d: hexFlat(50, 62, 9),
   c: accent
 }));
 
